@@ -14,8 +14,16 @@
   .ftoken {
     font-size: 34px;
     margin: 25px 0;
-    }
-
+    display: flex;  /* Flex-контейнер для выравнивания изображения и текста */
+    align-items: center;  /* Центрируем изображение и текст по вертикали */
+  }
+  
+  .token-image {
+    width: 40px;  /* Ширина картинки */
+    height: 40px;  /* Высота картинки */
+    margin-right: 5px;  /* Отступ справа от картинки */
+  }
+  
   .hr-text {
     position: relative;
     outline: 0;

@@ -8,11 +8,13 @@ import LeaderPage from './pages/LeaderPage/LeaderPage';
 function App() {
   const [balance, setBalance] = useState(0);
   const [registered, setRegistered] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Состояние загрузки
+
 
   function decodePromoCode(promoCode) {
     let decoded = '';
     
-    for (let i = 0; i < promoCode.length; i++) {
+    for (let i = 0; i < promoCode?.length; i++) {
       const charCode = promoCode.charCodeAt(i);
       decoded += (charCode - 65).toString();  // Вычитаем 23 и преобразуем в цифру
     }
@@ -54,6 +56,7 @@ function App() {
 
             if (response.ok) {
               console.log('Balance updated successfully');
+              setIsLoading(false)
             } else {
               console.error('Error updating balance:', await response.json());
             }
@@ -97,6 +100,8 @@ function App() {
                   console.error('Failed to update balance in cloud storage:', error);
                 }
               });
+              setIsLoading(false)
+
               console.log('User registered and stored in cloudStorage');
             } else {
               console.error('Error during registration:', await response.json());
@@ -122,7 +127,15 @@ function App() {
   window.Telegram.WebApp.expand();
 
   return (
-    <Router basename="/11001001000">
+    <>
+    {isLoading ?
+    ( <div className='spinner-container' style={{height:'100vh'}}>
+      <div className="spinner">
+        <img src="https://i.ibb.co/GnPQ1jd/IMG-2102.png" alt="loading" className="spinner-image" />
+      </div>
+    </div>)
+    :
+    (<Router basename="/11001001000">
       <div className="app">
         <Routes >
           <Route path="/" element={<HomePage />} exact />
@@ -144,7 +157,8 @@ function App() {
           </Link>
         </div>
       </div>
-    </Router>
+    </Router>)}
+    </>
   );
 }
 

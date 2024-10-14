@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';  // Импортируем axios для выполнения запросов
 import './FriendsPage.css';
 import refPic from '../../photo_2024-10-02 15.54.22.jpeg';
+import ftPick from '../../IMG-2102.png';
 
 const FriendsPage = () => {
   window.Telegram.WebApp.setBackgroundColor('#000');
@@ -12,6 +13,8 @@ const FriendsPage = () => {
   const [totalReferrals, setTotalReferrals] = useState(0);  // Состояние для хранения общего числа рефералов
   const [totalBalance, setTotalBalance] = useState(0);  // Состояние для хранения суммы всех балансов рефералов
   const [photoUrls, setPhotoUrls] = useState([]);  
+  const [isLoading, setIsLoading] = useState(true); // Состояние загрузки
+
   
   
   
@@ -41,7 +44,7 @@ const FriendsPage = () => {
   const shareMessage = () => {
     const promoCode = encodeUserId(userId);
     triggerHapticFeedbackSuccess();
-    const text = encodeURIComponent(`${promoCode}`);
+    const text = encodeURIComponent('');
     const url = encodeURIComponent(`https://t.me/TapDuckRobot/play?startapp=${promoCode}`);
     const telegramShareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
     window.open(telegramShareUrl, '_blank');
@@ -64,6 +67,8 @@ const FriendsPage = () => {
         // Рассчитываем общую сумму балансов всех рефералов
         const totalBalanceSum = data.referrals.reduce((sum, referral) => sum + parseInt(referral.balance), 0);
         setTotalBalance(totalBalanceSum);  // Устанавливаем общую сумму балансов
+
+        setIsLoading(false)
 
       } catch (error) {
         console.error("Error fetching referral data:", error);
@@ -113,14 +118,24 @@ const FriendsPage = () => {
   
 
   return (
+    <>
+    {isLoading ? (
+      <div className='spinner-container'>
+        <div className="spinner">
+          <img src="https://i.ibb.co/GnPQ1jd/IMG-2102.png" alt="loading" className="spinner-image" />
+        </div>
+      </div>
+    ) : (
     <div className="friends-page">
       <div className="referrals-section">
         {renderReferralImages()}  {/* Выводим фотографии рефералов */}
       </div>
 
       <div className='ftoken'>
-        FT {Math.floor(totalBalance * 0.025).toLocaleString()}  {/* Показываем сумму балансов всех рефералов */}
+        <img src={ftPick} alt="token image" className="token-image" />
+        {Math.floor(totalBalance * 0.025).toLocaleString()}  {/* Показываем сумму балансов всех рефералов */}
       </div>
+
 
       <h1 className="header-title">How it works</h1>
       <img 
@@ -152,15 +167,23 @@ const FriendsPage = () => {
       </div>
 
       <div style={{width: '95%',  display: 'flex', justifyContent: "center", fontSize:"36px", fontWeight:'bold', color:'white', textAlign: 'left', marginTop: '40px'}}>
-        FToken
+        Fren token
       </div>
       <div className="description-container" style={{justifyContent: 'center', alignItems: 'center', width: '80%'}}>
-        <p className="description-text" style={{textAlign: 'center', width: '100%', fontSize: '10px'}}>FToken is a token that will be converted into (coin name) during the counting phase.</p>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      <img src={ftPick} alt="token image" className="token-image" style={{margin: '0'}}/>
+      <p>* some manipulation =</p>
+      <img src='https://i.ibb.co/GnPQ1jd/IMG-2102.png' style={{margin: '0'}} alt="token image" className="token-image" />
+
+        </div>
+        <p className="description-text" style={{textAlign: 'center', width: '100%', fontSize: '10px'}}>Fren token is a token that will be converted into Durov Jesus Reward during the counting phase.</p>
       </div>
       <div className="invite-container">
         <button className="invite-button" onClick={shareMessage}>Invite</button>
       </div>
-    </div>
+    </div>)}
+    </>
+
   );
 }
 
