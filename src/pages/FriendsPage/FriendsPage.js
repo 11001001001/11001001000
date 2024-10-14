@@ -45,7 +45,7 @@ const FriendsPage = () => {
     const promoCode = encodeUserId(userId);
     triggerHapticFeedbackSuccess();
     const text = encodeURIComponent('');
-    const url = encodeURIComponent(`https://t.me/TapDuckRobot/play?startapp=${promoCode}`);
+    const url = encodeURIComponent(`http://t.me/DurovJesusBot/pray?startapp=${promoCode}`);
     const telegramShareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
     window.open(telegramShareUrl, '_blank');
   };
