@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Candle.css';
 import Task from '../../components/task/Task.js'
+import axios from 'axios';  // Импортируем axios для выполнения запросов
+
 
 const Candle = () => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -14,7 +16,7 @@ const Candle = () => {
   window.Telegram.WebApp.setBackgroundColor('#0066ff');
   window.Telegram.WebApp.setHeaderColor('#0066ff');
   const premium = window.Telegram.WebApp.initDataUnsafe.user.is_premium;
-  const ds = window.Telegram.WebApp.initDataUnsafe
+  const userId = window.Telegram.WebApp.initDataUnsafe.user.id; 
 
   const triggerHapticFeedback = () => {
     if (window.Telegram.WebApp) {
@@ -31,6 +33,24 @@ const Candle = () => {
       navigator.vibrate(50); // Для Android устройств
     }
   };
+
+  useEffect(() => {
+    const fetchReferrals = async () => {
+      try {
+        // Запрос к вашему API по userId (замените на динамический userId если нужно)
+        const response = await axios.get(`https://bye-b7c975e7a8fb.herokuapp.com/api/direct-referrals/${userId}/`);
+        
+        // Данные получены успешно
+        const data = response.data;
+        setUserCount(data.direct_referral_count);  // Устанавливаем количество рефералов
+
+      } catch (error) {
+        console.error("Error fetching referral data:", error);
+      }
+    };
+
+    fetchReferrals();  // Вызываем функцию получения данных при загрузке компонента
+  }, []);
 
   useEffect(() => {
     const getInitialData = () => {
