@@ -1,0 +1,26 @@
+.task-container {
+    width: 80%;
+    height: 60px;
+    background-color: #3d3d3d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  
+  .task-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .task-text {
+    font-size: 14px;
+    margin-left: auto;
+    text-align: right;
+  }
+  

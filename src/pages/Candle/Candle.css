@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.candle-scroll {
+    height: 90vh;
+    background-color: #0066ff;
+    overflow-y: auto;
+}
+
+.candle-top {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 20vh;
+    width: 100%;
+    position: fixed;
+    border-bottom: 1px solid #247cff;
+    background-color: #0066ff;
+    z-index: 2;
+
+}
+
+@keyframes flashing-text {
+  0% { color: #0066ff; } /* Начальный цвет */
+  50% { color: white; }    /* Цвет в середине анимации */
+  100% { color: #0066ff; } /* Конечный цвет */
+}
+
+.candle-title {
+    font-size: 40px;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Класс для анимации */
+.flashing {
+    animation: flashing-text 2s infinite; /* Анимация мигания текста */
+}
+
+
+
+.candle-image {
+    width: 130px;
+    height: 130px;
+}
+
+.candle-middle {
+    position: relative;
+    top: 20vh;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+  }
+  
+  .middle-columns {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    width: 90%; /* Ширина блока на 80% страницы */
+  }
+  
+  .middle-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем элементы */
+    width: 30%; /* Ширина каждой колонки */
+  }
+  
+  .middle-block {
+    display: flex;
+    flex-direction: column; /* Располагаем лейбл над блоком с текстом и картинкой */
+    align-items: center;
+    color: white;
+  }
+  
+  .middle-label {
+    font-size: 8px; /* Размер шрифта для лейбла */
+    font-weight: bold;
+    margin-bottom: 5px; /* Отступ между лейблом и блоком с контентом */
+  }
+  
+  .middle-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    padding: 0;
+    margin-bottom: 15px;
+    
+    /* Стеклянный эффект */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Для поддержки в Safari */
+    border-radius: 12px 6px 12px 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Легкая граница */
+    
+    /* Тень для глубины */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.completed {
+  animation: flashing-blue 2.6s infinite;
+}
+
+.stored {
+  background: rgba(25, 121, 247, 0.519);
+  border: none;
+  box-shadow: none;
+
+}
+
+
+  
+  .middle-content img {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .middle-content p {
+    font-size: 10px;
+  }
+  
+  .middle-dashed-line {
+    width: 2px; /* Теперь линия будет узкой по ширине */
+    height: 30px; /* Высота линии, можно настроить под нужный размер */
+    border-left: 2px dashed #ffffff; /* Вертикальная пунктирная линия */
+    margin-bottom: 5px;
+    border-bottom: none; /* Убираем нижнюю горизонтальную линию */
+  }
+  
+  
+
+
+
+/* Стиль для нижнего блока */
+.candle-bottom {
+    background-color: #000;
+    width: 100%;
+    height: 86vh;
+    position: absolute;
+    bottom: 0;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    transition: transform 0.5s ease-in-out;
+    z-index: 3;
+}
+
+/* Расширенное состояние */
+.candle-bottom.expanded {
+    transform: translateY(0);
+}
+
+/* Свернутое состояние (80% вниз) */
+.candle-bottom.collapsed {
+    transform: translateY(75%);
+}
+
+.candle-bottom-balance {
+    margin-top: 20px;
+    display: flex;
+    align-items: center; /* Центрируем по вертикали */
+    justify-content: center; /* Центрируем по горизонтали */
+  }
+  
+  .candle-image-balance {
+    width: 40px; /* Ширина изображения 40px */
+    height: 40px; /* Высота изображения также 40px для сохранения пропорций */
+  }
+  
+  .candle-text-balance {
+    font-size: 40px; /* Размер шрифта текста 40px */
+    line-height: 40px; /* Высота строки такая же, как и размер шрифта */
+    color: white; /* Цвет текста (можно изменить при необходимости) */
+  }
+
+ 
+  .progress-container {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin: 5px auto ;
+  }
+  .top-progress-container {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 20px auto 0 auto;
+  }
+
+  .top-text {
+    display: flex;
+    justify-content: space-between; /* Равномерное распределение текста */
+    width: 100%; /* Ширина на 100% от контейнера */
+  }
+  
+  .progress-line {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: grey;
+  }
+  
+  .dot.active {
+    background-color: white;
+  }
+  
+  .step-label {
+    margin-top: 10px;
+    color: grey;
+    font-size: 10px;
+  }
+  
+  .step-label.active {
+    color: white;
+  }
+  
+  .line {
+    margin-top: 1px;
+    width: 100px;
+    height: 1px;
+    border-top: 1.5px dashed grey;
+  }
+  
+  .line.active {
+    border-color: white;
+  }
+  
+  .hands {
+    width: 90%; /* Блок занимает 90% ширины страницы */
+    margin: 80px auto; /* Центрирование блока на странице */
+    display: flex;
+    justify-content: center; /* Центрирование изображения внутри блока */
+    position: relative;
+    border-radius: 50%;
+  }
+  .hands.active {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.92) 0%, rgba(246, 238, 103, 0) 50%); /* Градиент от центра к краям */
+  }
+  
+  .hands-image {
+    margin: 20px;
+    width: 50%; /* Изображение занимает 50% ширины родительского блока */
+    height: auto;
+    transition: all 0.3s ease; /* Плавные изменения */
+  }
+  
+  .hands-image.active {
+    width: 45%; /* Уменьшение размера до 45% */
+  }
+  
+  .floating-images {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    overflow: visible; /* Позволяет маленьким картинкам выходить за границы блока */
+  }
+  
+  
+  .small-floating-image {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+  
+  .small-floating-image img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .small-floating-image {
+    animation: flyUp 1s forwards;
+  }
+
+  .large-floating-image {
+    position: absolute;
+    width: 100px; /* Увеличенный размер для больших изображений */
+    height: 100px;
+    opacity: 1;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+  
+  .large-floating-image img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .large-floating-image {
+    animation: flyUp 1s forwards;
+  }
+  
+  
+  @keyframes flyUp {
+    from {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    to {
+      opacity: 0;
+      transform: translate(0, -150px);
+    }
+  }
+  
+  @keyframes flashing-blue {
+    0% { background-color: rgba(97, 181, 250, 0.836); }
+    50% { background-color: rgba(0, 0, 255, 0.2); }
+    100% { background-color: rgba(97, 181, 250, 0.836); }
+  }

@@ -1,0 +1,145 @@
+/* Основной контейнер */
+.leader-scroll {
+    height: 90vh;
+    overflow-y: auto;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #000; /* Черный фон для блока */
+
+  }
+
+  .top-leader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0; /* Убедитесь, что верхний блок зафиксирован сверху */
+    height: 30vh;
+    width: 90%;
+    border-bottom: 1px solid rgb(61, 61, 61);
+    z-index: 2;
+    background-color: #000; /* Черный фон для блока */
+}
+
+.leader-header {
+    text-align: center;
+  }
+  
+  .leader-header img {
+    width: 80px;
+    height: auto; /* Максимальная высота картинки */
+  }
+.header-up {
+    font-size: 30px;
+}
+.header-low {
+    font-size: 15px;
+}
+
+.leader-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+  
+.leader-card img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover; /* Обеспечивает, что изображение будет подогнано, не теряя пропорции */
+}
+
+  
+  .leader-card div {
+    display: flex;
+    flex-direction: column;
+    color: #999;
+  }
+  
+  .leader-card strong {
+    font-weight: bold;
+    color: white;
+  }
+  
+  .leader-card p {
+    margin: 0;
+  }
+  
+  /* Количество монет и иконка справа */
+  .leader-card .coins {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+
+
+  .leader-card .coins img {
+    margin: 0;
+    width: 25px;
+    height: 25px;
+}
+
+
+.mid-leader {
+  position: relative;
+  top: 30vh; /* Отступ от верхнего блока */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Начинаем с верха списка */
+  align-items: center;
+  height: 60vh; /* Фиксированная высота контейнера для прокрутки */
+  width: 90%;
+  overflow-y: auto; /* Добавляем вертикальную прокрутку */
+  overflow-x: hidden;
+  margin-top: 10px;
+}
+
+.spinner-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #000; /* Черный фон */
+}
+
+.spinner {
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-left-color: rgb(255, 255, 255);
+  border-right-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  position: relative; /* Для позиционирования картинки */
+  animation: spin 1.2s linear infinite;
+}
+
+.spinner-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px; /* Размер картинки */
+  height: 50px;
+  transform: translate(-50%, -50%); /* Центрирование картинки */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

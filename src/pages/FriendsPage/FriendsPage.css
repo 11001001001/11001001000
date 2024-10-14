@@ -1,0 +1,126 @@
+.description-container {
+    justify-content: space-between;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .description-text {
+    color: #b8b5b5; /* Light gray text color */
+    font-size: 10px;
+    text-align: left;
+    width: 50%;
+  }
+
+  .ftoken {
+    font-size: 34px;
+    margin: 25px 0;
+    }
+
+  .hr-text {
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .8;
+}
+.hr-text::before {
+    content: '';
+    background: linear-gradient(to right, transparent, #ffffff65, transparent);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+}
+
+  .friends-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      color: white;
+      padding: 0;
+      background-color: black;
+      height: 78vh;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+  }
+  
+  .header-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+  }
+  
+  .node-tree-image {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin-bottom: 20px;
+  }
+  
+  .invite-container {
+      position: fixed;
+      height: 12vh;
+      bottom: 10%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+  }
+  
+  /* Invite button styling */
+  .invite-button {
+      width: 88%;
+      padding: 5px;
+      height: 6vh;
+      background-color: white;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+  }
+  
+  .invite-button:hover {
+      background-color: #f0f0f0;
+  }
+  
+  .referrals-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 50px 0 20px 0;
+  }
+  
+  .referral-images-container {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Центрируем контейнер */
+    align-items: center;
+  }
+  
+  .referral-image {
+    border-radius: 50%;
+    width: 50px;  /* Базовый размер картинки */
+    height: 50px;
+    position: absolute;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: solid 1px white;
+  }
+  
+  .remaining-referrals-text {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 150px; /* Смещаем текст справа от последней картинки */
+    z-index: 12;
+    position: relative;
+  }
+  

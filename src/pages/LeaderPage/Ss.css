@@ -1,0 +1,103 @@
+
+/* Основной контейнер */
+.leader-scroll {
+    height: 90vh;
+    overflow-y: auto;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.fixed-header {
+    height: 30vh;
+    width: 100%;
+    position: fixed;
+    background-color: black;
+    z-index: 2;
+    
+
+}
+
+.leader-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.leader-header img {
+    width: 80px;
+}
+
+.header-up {
+    font-size:30px;
+    font-weight: bold;
+}
+.header-low {
+    font-size: 15px;
+
+}
+
+.leader-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding: 0 10px;
+  }
+  
+  .leader-card img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .leader-card div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .leader-card strong {
+    font-weight: bold;
+  }
+  
+  .leader-card p {
+    margin: 0;
+  }
+  
+  /* Количество монет и иконка справа */
+  .leader-card .coins {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .leader-card .coins p {
+    margin-right: 5px;
+  }
+
+  .leader-card .coins img {
+    width: 25px;
+    height: 25px;
+}
+  
+  /* Разделительная линия */
+  .hr-divider {
+    position: absolute;
+    top: 30vh;
+    width: 90%;
+    border-top: 1px solid gray;
+  }
+
+  .user-list {
+    position: relative;
+    top: 30vh;
+    height: 60vh;
+    width: 100%;
+    margin-top: 10px;
+    overflow-x: hidden;
+
+  }
