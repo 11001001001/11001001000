@@ -122,9 +122,9 @@ function App() {
   window.Telegram.WebApp.expand();
 
   return (
-    <Router>
+    <Router basename="/11001001000">
       <div className="app">
-        <Routes basename="/11001001000">
+        <Routes >
           <Route path="/" element={<HomePage />} exact />
           <Route path="/friends" element={<FriendsPage />} exact />
           <Route path="/leaders" element={<LeaderPage />} exact />
