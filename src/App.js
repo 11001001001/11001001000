@@ -124,7 +124,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <Routes>
+        <Routes basename="/11001001000">
           <Route path="/" element={<HomePage />} exact />
           <Route path="/friends" element={<FriendsPage />} exact />
           <Route path="/leaders" element={<LeaderPage />} exact />
