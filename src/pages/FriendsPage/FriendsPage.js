@@ -109,7 +109,7 @@ const FriendsPage = () => {
         })}
         {remainingReferrals > 0 && (
           <div className="remaining-referrals-text">
-            +{remainingReferrals}
+            +{remainingReferrals.toLocaleString()}
           </div>
         )}
       </div>
