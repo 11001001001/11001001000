@@ -127,7 +127,7 @@
     color: white;
     font-size: 18px;
     font-weight: bold;
-    margin-left: 225px; /* Смещаем текст справа от последней картинки */
+    margin-left: 190px; /* Смещаем текст справа от последней картинки */
     z-index: 12;
     position: relative;
   }
