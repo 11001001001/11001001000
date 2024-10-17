@@ -63,9 +63,13 @@ function App() {
               setIsLoading(false)
             } else {
               console.error('Error updating balance:', await response.json());
+              setIsLoading(false)
+
             }
           } catch (error) {
             console.error('Request failed:', error);
+            setIsLoading(false)
+
           }
         }
       } else {
@@ -109,9 +113,13 @@ function App() {
               console.log('User registered and stored in cloudStorage');
             } else {
               console.error('Error during registration:', await response.json());
+              setIsLoading(false)
+
             }
           } catch (error) {
             console.error('Request failed:', error);
+            setIsLoading(false)
+
           }
         }
       }

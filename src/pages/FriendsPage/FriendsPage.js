@@ -92,11 +92,13 @@ const FriendsPage = () => {
         {photoUrls.slice(0, imagesToShow).map((url, index) => {
           const offset = (index - Math.floor(imagesToShow / 2)) * 20; // Смещение от центра
           const size = baseSize * Math.pow(scaleFactor, index);  // Уменьшение на 7% для каждой следующей картинки
+  
           return (
             <img
               key={index}
               src={url}
               alt={`Referral ${index + 1}`}
+              onError={(e) => e.target.src = picture}  // Если картинка не загрузилась, подставляем placeholder
               className="referral-image"
               style={{
                 zIndex: imagesToShow - index,  // Чтобы картинки накладывались правильно
@@ -115,6 +117,7 @@ const FriendsPage = () => {
       </div>
     );
   };
+  
   
 
   return (

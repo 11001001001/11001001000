@@ -131,6 +131,7 @@ const LeaderPage = () => {
             <img
               src={currentUser.photo_url || picture} // Аватар текущего пользователя или placeholder
               alt={currentUser.name}
+              onError={(e) => e.target.src = picture} 
             />
             <div>
               <strong>{currentUser.name}</strong> {/* Имя текущего пользователя */}
@@ -153,6 +154,7 @@ const LeaderPage = () => {
             <img
               src={user.photo_url || picture} // Аватар пользователя или placeholder
               alt={user.name}
+              onError={(e) => e.target.src = picture} 
             />
             <div>
               <strong>{user.name}</strong> {/* Имя пользователя */}
