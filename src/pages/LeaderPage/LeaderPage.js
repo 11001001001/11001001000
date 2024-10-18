@@ -49,7 +49,7 @@ const LeaderPage = () => {
         const apiBalance = parseInt(data.balance, 10);
 
         // Если баланс в API отличается от локального, обновляем его на сервере
-        if (apiBalance !== balance) {
+        if (apiBalance < balance) {
           try {
             const updateResponse = await fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/update-balance/${userId}/`, {
               method: 'PUT',
