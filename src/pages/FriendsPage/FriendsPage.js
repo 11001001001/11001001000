@@ -50,7 +50,6 @@ const FriendsPage = () => {
     window.open(telegramShareUrl, '_blank');
   };
 
-  // Используем useEffect для выполнения запроса при монтировании компонента
   useEffect(() => {
     const fetchReferrals = async () => {
       try {
@@ -65,10 +64,15 @@ const FriendsPage = () => {
         setPhotoUrls(photoUrlsArray);  
         
         // Рассчитываем общую сумму балансов всех рефералов
-        const totalBalanceSum = data.referrals.reduce((sum, referral) => sum + parseInt(referral.balance), 0);
+        const totalBalanceSum = data.referrals.reduce((sum, referral) => {
+          // Проверяем, что баланс является числом и конвертируем его
+          const balance = parseInt(referral.balance, 10);
+          return !isNaN(balance) ? sum + balance : sum;
+        }, 0);
+        
         setTotalBalance(totalBalanceSum);  // Устанавливаем общую сумму балансов
 
-        setIsLoading(false)
+        setIsLoading(false);
 
       } catch (error) {
         console.error("Error fetching referral data:", error);
@@ -76,7 +80,8 @@ const FriendsPage = () => {
     };
 
     fetchReferrals();  // Вызываем функцию получения данных при загрузке компонента
-  }, []);  // Пустой массив зависимостей, чтобы запрос выполнялся только один раз при монтировании
+  }, []);  // Пустой массив зависимостей
+
 
   const renderReferralImages = () => {
     if (totalReferrals === 0) return null;  // Если нет рефералов, ничего не выводим
@@ -138,6 +143,7 @@ const FriendsPage = () => {
         <img src={ftPick} alt="token image" className="token-image" />
         {Math.floor(totalBalance * 0.025).toLocaleString()}  {/* Показываем сумму балансов всех рефералов */}
       </div>
+
 
 
       <h1 className="header-title">How it works</h1>
