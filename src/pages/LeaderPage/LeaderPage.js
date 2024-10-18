@@ -82,23 +82,27 @@ const LeaderPage = () => {
 };
 
 
-useEffect(() => {
-  const fetchUsers = async () => {
-    if (!isBalanceLoaded) return; // Wait until balance is loaded
+  // Запрос списка пользователей из API
+  useEffect(() => {
+    const fetchUsers = async () => {
+      if (!isBalanceLoaded) return; // Ждем загрузки баланса перед запросом
 
-    try {
-      const response = await fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/list-user/?user_id=${userId}`);
-      const data = await response.json();
-      setUsers(data);
-      setIsChecked(false);
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
-  };
+      try {
+        // Сначала проверяем и обновляем баланс
+        await checkAndUpdateBalance();
 
-  fetchUsers();
-}, [isBalanceLoaded, balance, userId]); // Dependencies
+        // Запрос списка пользователей
+        const response = await fetch('https://bye-b7c975e7a8fb.herokuapp.com/api/list-user/');
+        const data = await response.json();
+        setUsers(data);
+        setIsChecked(false);
+      } catch (error) {
+        console.error('Ошибка при получении данных:', error);
+      }
+    };
 
+    fetchUsers();
+  }, [isBalanceLoaded, balance]); // Зависимость от загрузки баланса
 
   // Запрос информации о текущем пользователе и его ранге
   useEffect(() => {
