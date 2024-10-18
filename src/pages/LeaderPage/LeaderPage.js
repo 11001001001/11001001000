@@ -7,16 +7,20 @@ const LeaderPage = () => {
   const [currentRank, setCurrentRank] = useState(null);
   const [totalUsers, setTotalUsers] = useState(null); 
   const [balance, setBalance] = useState(0);
-  const [isBalanceLoaded, setIsBalanceLoaded] = useState(false); // Новый флаг для отслеживания загрузки баланса
+  const [isBalanceLoaded, setIsBalanceLoaded] = useState(false); // Флаг для отслеживания загрузки баланса
   const [isLoading, setIsLoading] = useState(true); // Состояние загрузки
-  const [isChecked, setIsChecked] = useState(true); // Состояние загрузки
+  const [isChecked, setIsChecked] = useState(true); // Флаг для контроля дополнительных проверок
 
-  const picture = 'https://freesvg.org/img/abstract-user-flat-4.png';
+  const picture = 'https://freesvg.org/img/abstract-user-flat-4.png'; // URL аватара по умолчанию
 
+  // Устанавливаем цвета фона и шапки приложения Telegram
   window.Telegram.WebApp.setBackgroundColor('#000');
   window.Telegram.WebApp.setHeaderColor('#000');
+
+  // Получаем ID пользователя из данных Telegram
   const userId = window.Telegram.WebApp.initDataUnsafe.user.id; 
 
+  // Запрос начальных данных (баланс) из Cloud Storage Telegram
   useEffect(() => {
     const getInitialData = () => {
       window.Telegram.WebApp.CloudStorage.getItems(['balanceC'], (error, result) => {
@@ -34,17 +38,17 @@ const LeaderPage = () => {
 
   // Функция для проверки и обновления баланса
   const checkAndUpdateBalance = async () => {
-    if (!isBalanceLoaded) return; // Выполняем проверку только если баланс загружен
+    if (!isBalanceLoaded) return; // Ждем загрузки баланса
 
     try {
-      // Шаг 1: Получаем баланс пользователя с API
+      // Получаем баланс пользователя с API
       const response = await fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/check-user/${userId}/`);
       const data = await response.json();
 
       if (data.message === "User found") {
         const apiBalance = parseInt(data.balance, 10);
 
-        // Шаг 2: Если баланс в API отличается от локального, обновляем его на сервере
+        // Если баланс в API отличается от локального, обновляем его на сервере
         if (apiBalance !== balance) {
           try {
             const updateResponse = await fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/update-balance/${userId}/`, {
@@ -68,29 +72,29 @@ const LeaderPage = () => {
     }
   };
 
-  // Запрос к API для получения всех пользователей
+  // Запрос списка пользователей из API
   useEffect(() => {
     const fetchUsers = async () => {
-      if (!isBalanceLoaded) return; // Ждем загрузки баланса перед выполнением запросов
+      if (!isBalanceLoaded) return; // Ждем загрузки баланса перед запросом
 
       try {
         // Сначала проверяем и обновляем баланс
         await checkAndUpdateBalance();
 
-        // Запрос на получение списка пользователей
+        // Запрос списка пользователей
         const response = await fetch('https://bye-b7c975e7a8fb.herokuapp.com/api/list-user/');
         const data = await response.json();
         setUsers(data);
-        setIsChecked(false)
+        setIsChecked(false);
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
       }
     };
 
     fetchUsers();
-  }, [isBalanceLoaded, balance]); // Выполняем запрос только после загрузки баланса
+  }, [isBalanceLoaded, balance]); // Зависимость от загрузки баланса
 
-  // Запрос к API для получения информации о текущем пользователе
+  // Запрос информации о текущем пользователе и его ранге
   useEffect(() => {
     fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/user-rank/?user_id=${userId}`)
       .then(response => response.json())
@@ -105,74 +109,74 @@ const LeaderPage = () => {
 
   return (
     <>
-    {isLoading && isChecked ? (
-      <div className='spinner-container'>
-        <div className="spinner">
-          <img src="https://i.ibb.co/GnPQ1jd/IMG-2102.png" alt="loading" className="spinner-image" />
-        </div>
-      </div>
-    ) : (
-    <div className="leader-scroll">
-      {/* <div style={{position: 'absolute', top: '20px', right: '20px', fontSize: '10px', color: '#999', zIndex: '4'}}>
-        {`${(211323 + totalUsers).toLocaleString()} users`}
-      </div>  */}
-      <div className='top-leader'>
-        <div className="leader-header">
-          <img
-            src="https://getcompliance.com.au/wp-content/uploads/2022/11/star.png"
-            alt="Leader Avatar"
-          />
-          <div className='header-up'>Leaderboard</div>
-          <div className='header-low'>🏆Top 100🏆</div>
-        </div>
-
-        {currentUser && (
-          <div className="leader-card">
-            <img
-              src={currentUser.photo_url || picture} // Аватар текущего пользователя или placeholder
-              alt={currentUser.name}
-              onError={(e) => e.target.src = picture} 
-            />
-            <div>
-              <strong>{currentUser.name}</strong> {/* Имя текущего пользователя */}
-              <p>{`#${currentRank.toLocaleString()}`}</p> {/* Место текущего пользователя */}
-            </div>
-            <div className="coins">
-              <p>{parseInt(balance).toLocaleString()}</p> {/* Баланс с форматированием */}
-              <img
-                src="https://i.ibb.co/GnPQ1jd/IMG-2102.png" // Ссылка на изображение монеты
-                alt="coins"
-              />
-            </div>
+      {isLoading && isChecked ? (
+        <div className='spinner-container'>
+          <div className="spinner">
+            <img src="https://i.ibb.co/GnPQ1jd/IMG-2102.png" alt="loading" className="spinner-image" />
           </div>
-        )}
-      </div>
-
-      <div className='mid-leader'>
-        {users.map((user, index) => (
-          <div key={user.user_id} className="leader-card">
-            <img
-              src={user.photo_url || picture} // Аватар пользователя или placeholder
-              alt={user.name}
-              onError={(e) => e.target.src = picture} 
-            />
-            <div>
-              <strong>{user.name}</strong> {/* Имя пользователя */}
-              <p>{`#${index + 1}`}</p> {/* Номер по сортировке */}
-            </div>
-            <div className="coins">
-              <p>{parseInt(user.balance).toLocaleString()}</p> {/* Баланс с форматированием */}
+        </div>
+      ) : (
+        <div className="leader-scroll">
+          {/* Секция шапки лидеров */}
+          <div className='top-leader'>
+            <div className="leader-header">
               <img
-                src="https://i.ibb.co/GnPQ1jd/IMG-2102.png" // Ссылка на изображение монеты
-                alt="coins"
-                style={{ width: '30px' }} // Размер картинки монеты
+                src="https://getcompliance.com.au/wp-content/uploads/2022/11/star.png"
+                alt="Leader Avatar"
               />
+              <div className='header-up'>Leaderboard</div>
+              <div className='header-low'>🏆Top 100🏆</div>
             </div>
+
+            {/* Карточка текущего пользователя */}
+            {currentUser && (
+              <div className="leader-card">
+                <img
+                  src={currentUser.photo_url || picture} // Аватар текущего пользователя
+                  alt={currentUser.name}
+                  onError={(e) => e.target.src = picture} // Заменяем на картинку по умолчанию при ошибке
+                />
+                <div>
+                  <strong>{currentUser.name}</strong> {/* Имя текущего пользователя */}
+                  <p>{`#${currentRank.toLocaleString()}`}</p> {/* Ранг текущего пользователя */}
+                </div>
+                <div className="coins">
+                  <p>{parseInt(balance).toLocaleString()}</p> {/* Баланс текущего пользователя */}
+                  <img
+                    src="https://i.ibb.co/GnPQ1jd/IMG-2102.png"
+                    alt="coins"
+                  />
+                </div>
+              </div>
+            )}
           </div>
-        ))}
-      </div>
-    </div>
-    )}
+
+          {/* Секция списка лидеров */}
+          <div className='mid-leader'>
+            {users.map((user, index) => (
+              <div key={user.user_id} className="leader-card">
+                <img
+                  src={user.photo_url || picture} // Аватар пользователя
+                  alt={user.name}
+                  onError={(e) => e.target.src = picture} // Заменяем на картинку по умолчанию при ошибке
+                />
+                <div>
+                  <strong>{user.name}</strong> {/* Имя пользователя */}
+                  <p>{`#${index + 1}`}</p> {/* Порядковый номер пользователя */}
+                </div>
+                <div className="coins">
+                  <p>{parseInt(user.balance).toLocaleString()}</p> {/* Баланс пользователя */}
+                  <img
+                    src="https://i.ibb.co/GnPQ1jd/IMG-2102.png"
+                    alt="coins"
+                    style={{ width: '30px' }} // Размер картинки монеты
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 };
