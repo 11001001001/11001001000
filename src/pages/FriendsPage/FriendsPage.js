@@ -76,6 +76,7 @@ const FriendsPage = () => {
 
       } catch (error) {
         console.error("Error fetching referral data:", error);
+        setIsLoading(false);
       }
     };
 
