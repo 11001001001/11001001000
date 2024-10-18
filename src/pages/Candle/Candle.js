@@ -12,8 +12,6 @@ const Candle = () => {
   const [balance, setBalance] = useState(0)
   const [clickedButtons, setClickedButtons] = useState([]);
   const [userCount, setUserCount] = useState(0)
-  const [isBalanceLoaded, setIsBalanceLoaded] = useState(false); // Флаг для отслеживания загрузки баланса
-
 
   window.Telegram.WebApp.setBackgroundColor('#0066ff');
   window.Telegram.WebApp.setHeaderColor('#0066ff');
@@ -54,43 +52,6 @@ const Candle = () => {
     fetchReferrals();  // Вызываем функцию получения данных при загрузке компонента
   }, []);
 
-  const checkAndUpdateBalance = async () => {
-
-    try {
-      const response = await fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/check-user/${userId}/`);
-      const data = await response.json();
-
-      if (data.message === "User found") {
-        const apiBalance = parseInt(data.balance, 10);
-        if (apiBalance < balance) {
-          try {
-            const updateResponse = await fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/update-balance/${userId}/`, {
-              method: 'PUT',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ balance })
-            });
-
-            if (updateResponse.ok) {
-              console.log('Balance updated successfully');
-            } else {
-              console.error('Error updating balance:', await updateResponse.json());
-            }
-          } catch (error) {
-            console.error('Request failed:', error);
-          }
-        }
-      }
-    } catch (error) {
-      console.error('Ошибка при проверке баланса:', error);
-    }
-  };
-
-  useEffect(() => {
-    if (isBalanceLoaded) {
-      checkAndUpdateBalance();
-    }
-  }, [isBalanceLoaded]);
-
   useEffect(() => {
     const getInitialData = () => {
       window.Telegram.WebApp.CloudStorage.getItems(['balanceC', 'clickedButtons'], (error, result) => {
@@ -101,8 +62,6 @@ const Candle = () => {
           const storedData = result.clickedButtons ? JSON.parse(result.clickedButtons) : [];
           setClickedButtons(storedData)
           setBalance(initialBalance);
-          setIsBalanceLoaded(true); // Устанавливаем флаг, когда баланс загружен
-
         }
       });
     };
