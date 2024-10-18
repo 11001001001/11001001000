@@ -72,6 +72,16 @@ const LeaderPage = () => {
     }
   };
 
+  const getCurrentMonth = () => {
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    const date = new Date();
+    return monthNames[date.getMonth()];
+};
+
+
   // Запрос списка пользователей из API
   useEffect(() => {
     const fetchUsers = async () => {
@@ -125,7 +135,7 @@ const LeaderPage = () => {
                 alt="Leader Avatar"
               />
               <div className='header-up'>Leaderboard</div>
-              <div className='header-low'>🏆Top 100🏆</div>
+              <div className='header-low'>{`🏆Top ${getCurrentMonth()} ligue🏆`}</div> {/* Здесь выводим текущий месяц */}
             </div>
 
             {/* Карточка текущего пользователя */}
