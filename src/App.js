@@ -130,11 +130,17 @@ function App() {
         }
       }
     };
+    const stopLoadingAfterDelay = (setIsLoading) => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 4000); // 4 секунды задержки
+    };
+    
 
     if (!registered) {
       checkUserExists();
     } else {
-      setTimeout(() => setIsLoading(false), 2000);
+      stopLoadingAfterDelay(setIsLoading);
     }
   }, [registered]);
 
