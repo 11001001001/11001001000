@@ -134,7 +134,12 @@ function App() {
     if (!registered) {
       checkUserExists();
     } else {
-      setIsLoading(false);
+      const intervalId = setInterval(() => {
+        setIsLoading(false);
+      }, 2000); // Устанавливаем интервал в 2 секунды
+
+      // Очищаем интервал, если компонент размонтируется
+      return () => clearInterval(intervalId);
     }
   }, [registered]);
 
