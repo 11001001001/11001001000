@@ -134,12 +134,7 @@ function App() {
     if (!registered) {
       checkUserExists();
     } else {
-      const timeoutId = setTimeout(() => {
-        setIsLoading(false);
-      }, 2000); // Используем setTimeout для задержки в 2 секунды
-  
-      // Очищаем таймаут при размонтировании компонента
-      return () => clearTimeout(timeoutId);
+      setTimeout(() => setIsLoading(false), 2000);
     }
   }, [registered]);
 
