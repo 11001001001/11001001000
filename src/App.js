@@ -130,18 +130,12 @@ function App() {
         }
       }
     };
-    const stopLoadingAfterDelay = (setIsLoading) => {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 4000); // 4 секунды задержки
-    };
+    
     
 
-    if (!registered) {
-      checkUserExists();
-    } else {
-      stopLoadingAfterDelay(setIsLoading);
-    }
+    
+    checkUserExists();
+    
   }, [registered]);
 
   const triggerHapticFeedback = () => {
