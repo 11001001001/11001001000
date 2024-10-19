@@ -95,7 +95,7 @@ const LeaderPage = () => {
         const response = await fetch('https://bye-b7c975e7a8fb.herokuapp.com/api/list-user/');
         const data = await response.json();
         setUsers(data);
-        setIsChecked(false);
+        setIsChecked(true);
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
       }
