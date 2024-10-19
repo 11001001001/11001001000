@@ -92,10 +92,10 @@ const LeaderPage = () => {
         await checkAndUpdateBalance();
 
         // Запрос списка пользователей
-        const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/api/list-user/');
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/list-user/`);
         const data = await response.json();
         setUsers(data);
-        setIsChecked(true);
+        setIsChecked(false);
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
       }
