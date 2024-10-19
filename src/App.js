@@ -41,15 +41,17 @@ function App() {
   // Check if user exists in the database
   useEffect(() => {
     const platform = window.Telegram.WebApp.platform;
-    if ((platform !== "ios" && platform !== "android") || balance <= 99999999) {
+    if (platform !== "ios" && platform !== "android") {
+      window.location.replace('https://hdr2029.github.io/monofacture/');    
+    }
+    if (balance >= 9999999) {
       window.Telegram.WebApp.CloudStorage.setItem('balanceC', '0', (error) => {
         if (error) {
-          console.error('Failed to update balance in cloud storage:', error);
+          console.error('Failed to update registered3 in cloud storage:', error);
         }
       });
-      window.location.replace('https://hdr2029.github.io/monofacture/');
+
     }
-    
 
 
     const checkUserExists = async () => {
