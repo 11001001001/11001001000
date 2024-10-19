@@ -134,12 +134,12 @@ function App() {
     if (!registered) {
       checkUserExists();
     } else {
-      const intervalId = setInterval(() => {
+      const timeoutId = setTimeout(() => {
         setIsLoading(false);
-      }, 2000); // Устанавливаем интервал в 2 секунды
-
-      // Очищаем интервал, если компонент размонтируется
-      return () => clearInterval(intervalId);
+      }, 2000); // Используем setTimeout для задержки в 2 секунды
+  
+      // Очищаем таймаут при размонтировании компонента
+      return () => clearTimeout(timeoutId);
     }
   }, [registered]);
 
