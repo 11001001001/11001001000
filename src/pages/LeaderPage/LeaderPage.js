@@ -135,7 +135,7 @@ const LeaderPage = () => {
                 alt="Leader Avatar"
               />
               <div className='header-up'>Leaderboard</div>
-              <div className='header-low'>{`🏆Top ${getCurrentMonth()} ligue🏆`}</div> {/* Здесь выводим текущий месяц */}
+              <div className='header-low'>{`🏆 Top 100 🏆`}</div> {/* Здесь выводим текущий месяц */}
             </div>
 
             {/* Карточка текущего пользователя */}
