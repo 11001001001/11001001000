@@ -42,7 +42,7 @@ const LeaderPage = () => {
 
     try {
       // Получаем баланс пользователя с API
-      const response = await fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/check-user/${userId}/`);
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/check-user/${userId}/`);
       const data = await response.json();
 
       if (data.message === "User found") {
@@ -51,7 +51,7 @@ const LeaderPage = () => {
         // Если баланс в API отличается от локального, обновляем его на сервере
         if (apiBalance < balance) {
           try {
-            const updateResponse = await fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/update-balance/${userId}/`, {
+            const updateResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/update-balance/${userId}/`, {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ balance })
@@ -92,7 +92,7 @@ const LeaderPage = () => {
         await checkAndUpdateBalance();
 
         // Запрос списка пользователей
-        const response = await fetch('https://bye-b7c975e7a8fb.herokuapp.com/api/list-user/');
+        const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/api/list-user/');
         const data = await response.json();
         setUsers(data);
         setIsChecked(true);
@@ -106,7 +106,7 @@ const LeaderPage = () => {
 
   // Запрос информации о текущем пользователе и его ранге
   useEffect(() => {
-    fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/user-rank/?user_id=${userId}`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/api/user-rank/?user_id=${userId}`)
       .then(response => response.json())
       .then(data => {
         setCurrentUser(data.user);

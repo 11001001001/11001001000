@@ -61,7 +61,7 @@ function App() {
         const { id: user_id } = user;
 
         try {
-          const response = await fetch(`https://bye-b7c975e7a8fb.herokuapp.com/api/check-user/${user_id}/`);
+          const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/check-user/${user_id}/`);
 
           if (response.ok) {
             const data = await response.json();
@@ -112,7 +112,7 @@ function App() {
         console.log("Data being sent to the server:", newUser);
 
         try {
-          const response = await fetch('https://bye-b7c975e7a8fb.herokuapp.com/api/create-user/', {
+          const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/create-user/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newUser),

@@ -38,7 +38,7 @@ const Candle = () => {
     const fetchReferrals = async () => {
       try {
         // Запрос к вашему API по userId (замените на динамический userId если нужно)
-        const response = await axios.get(`https://bye-b7c975e7a8fb.herokuapp.com/api/direct-referrals/${userId}/`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/direct-referrals/${userId}/`);
         
         // Данные получены успешно
         const data = response.data;
