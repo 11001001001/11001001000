@@ -80,7 +80,7 @@ const Candle = () => {
     
     setIsHolding(true);
     const id = setInterval(() => {
-      const randomNum = Math.floor(Math.random() * 35);
+      const randomNum = Math.floor(Math.random() * 20);
       const randomNum2 = Math.floor(Math.random() * 80);
       if (randomNum === 5) {
         setBalance((prevBalance) => {
