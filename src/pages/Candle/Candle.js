@@ -14,6 +14,7 @@ const Candle = () => {
   const [balanceDogs, setBalanceDogs] = useState(0)
   const [clickedButtons, setClickedButtons] = useState([]);
   const [userCount, setUserCount] = useState(0)
+  const [isInitialAnimation, setIsInitialAnimation] = useState(false);
 
   window.Telegram.WebApp.setBackgroundColor('#0066ff');
   window.Telegram.WebApp.setHeaderColor('#0066ff');
@@ -37,6 +38,17 @@ const Candle = () => {
   };
 
   useEffect(() => {
+    if (balance === 1) {
+      setIsInitialAnimation(true)
+    const timer = setTimeout(() => {
+      setIsInitialAnimation(false); // Через 1 секунду убираем анимацию
+    }, 1000);
+
+    return () => clearTimeout(timer); // Очищаем таймер при размонтировании компонента
+    }
+  }, [balance]);
+
+  useEffect(() => {
     const fetchReferrals = async () => {
       try {
         // Запрос к вашему API по userId (замените на динамический userId если нужно)
@@ -56,7 +68,7 @@ const Candle = () => {
 
   useEffect(() => {
     const getInitialData = () => {
-      window.Telegram.WebApp.CloudStorage.getItems(['balanceC', 'clickedButtons', 'balanceN', 'balanceD'], (error, result) => {
+      window.Telegram.WebApp.CloudStorage.getItems(['balanceC', 'clickedButtons', 'balanceN', 'balanceD', 'start'], (error, result) => {
         if (error) {
           console.error('Failed to get initial data from cloud storage:', error);
         } else {
@@ -94,7 +106,7 @@ const Candle = () => {
         });
         spawnLargeFloatingImage();
         triggerHapticFeedbackSucces()
-      } else if (randomNum2 === 1) {
+      } else if (randomNum2 === 1 && userCount >= 5) {
         setBalanceNot((prevBalance) => {
           const newBalance = prevBalance + 1;
           window.Telegram.WebApp.CloudStorage.setItem('balanceN', Math.floor(newBalance).toString(), (error) => {
@@ -106,7 +118,7 @@ const Candle = () => {
         });
         spawnLargeFloatingImageNot();
         triggerHapticFeedbackSucces()
-      } else if (randomNum2 === 2) {
+      } else if (randomNum2 === 2 && userCount >= 5) {
         setBalanceDogs((prevBalance) => {
           const newBalance = prevBalance + 1;
           window.Telegram.WebApp.CloudStorage.setItem('balanceD', Math.floor(newBalance).toString(), (error) => {
@@ -332,7 +344,7 @@ const Candle = () => {
 
 
 
-      <div className={`candle-bottom ${isExpanded ? 'expanded' : 'collapsed'}`} onClick={isExpanded ? null : handleClick}>
+      <div className={`candle-bottom ${isExpanded ? 'expanded' : 'collapsed'} ${isInitialAnimation ? 'initial' : ''}`} onClick={isExpanded ? null : handleClick}>
       <div className="candle-bottom-balance">
       <div>
         <img
@@ -424,6 +436,12 @@ const Candle = () => {
 
       <div className='floating-images'></div>
     </div>
+
+    {userCount < 5 && (
+      <div className="undertext">
+        Invite 5 friends to open NOT and Dogs Token Pad
+      </div>
+    )}
 
 
       </div>
