@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';  // Импортируем axios для выполнения запросов
 import './FriendsPage.css';
 import refPic from '../../photo_2024-10-02 15.54.22.jpeg';
-import ftPick from '../../IMG-2102.png';
 
 const FriendsPage = () => {
   window.Telegram.WebApp.setBackgroundColor('#000');
@@ -140,7 +139,7 @@ const FriendsPage = () => {
       </div>
 
       <div className='ftoken'>
-        <img src={ftPick} alt="token image" className="token-image" />
+        <img src='https://cdn-icons-png.flaticon.com/512/3626/3626764.png' alt="token image" className="token-image" />
         {Math.floor(totalBalance * 0.025).toLocaleString()}  {/* Показываем сумму балансов всех рефералов */}
       </div>
 
@@ -176,16 +175,18 @@ const FriendsPage = () => {
       </div>
 
       <div style={{width: '95%',  display: 'flex', justifyContent: "center", fontSize:"36px", fontWeight:'bold', color:'white', textAlign: 'left', marginTop: '40px'}}>
-        Fren token
+        Secret token
       </div>
       <div className="description-container" style={{justifyContent: 'center', alignItems: 'center', width: '80%'}}>
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-      <img src={ftPick} alt="token image" className="token-image" style={{margin: '0'}}/>
-      <p>* some manipulation =</p>
+      <img src='https://cdn-icons-png.flaticon.com/512/3626/3626764.png' alt="token image" className="token-image" style={{marginRight: '5px', width: '15px', height: '15px'}}/>
+      <p>  * some manipulation =</p>
       <img src='https://i.ibb.co/GnPQ1jd/IMG-2102.png' style={{margin: '0'}} alt="token image" className="token-image" />
+      <img src='https://i.ibb.co/28QJcXt/IMG-2378.png' style={{margin: '0'}} alt="token image" className="token-image" />
+      <img src='https://i.ibb.co/C2zC1MV/IMG-2376.png' style={{margin: '0'}} alt="token image" className="token-image" />
 
         </div>
-        <p className="description-text" style={{textAlign: 'center', width: '100%', fontSize: '10px'}}>Fren token is a token that will be converted into Durov Jesus Reward during the counting phase.</p>
+        <p className="description-text" style={{textAlign: 'center', width: '100%', fontSize: '10px'}}>Secret token is a token that will be converted into Durov Jesus Reward during the counting phase.</p>
       </div>
       <div className="invite-container">
         <button className="invite-button" onClick={shareMessage}>Invite</button>

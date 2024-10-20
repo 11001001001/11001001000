@@ -163,12 +163,12 @@
     margin-top: 20px;
     display: flex;
     align-items: center; /* Центрируем по вертикали */
-    justify-content: center; /* Центрируем по горизонтали */
+    justify-content: space-around; /* Центрируем по горизонтали */
   }
   
   .candle-image-balance {
-    width: 40px; /* Ширина изображения 40px */
-    height: 40px; /* Высота изображения также 40px для сохранения пропорций */
+    width: 35px; /* Ширина изображения 40px */
+    height: 35px; /* Высота изображения также 40px для сохранения пропорций */
   }
   
   .candle-text-balance {

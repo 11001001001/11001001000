@@ -44,15 +44,6 @@ function App() {
     if (platform !== "ios" && platform !== "android") {
       window.location.replace('https://hdr2029.github.io/monofacture/');    
     }
-    if (balance >= 9999999) {
-      window.Telegram.WebApp.CloudStorage.setItem('balanceC', '0', (error) => {
-        if (error) {
-          console.error('Failed to update registered3 in cloud storage:', error);
-        }
-      });
-
-    }
-
 
     const checkUserExists = async () => {
       const user = window.Telegram.WebApp.initDataUnsafe.user;

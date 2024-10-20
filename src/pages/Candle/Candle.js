@@ -10,6 +10,8 @@ const Candle = () => {
   const [isHolding, setIsHolding] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
   const [balance, setBalance] = useState(0)
+  const [balanceNot, setBalanceNot] = useState(0)
+  const [balanceDogs, setBalanceDogs] = useState(0)
   const [clickedButtons, setClickedButtons] = useState([]);
   const [userCount, setUserCount] = useState(0)
 
@@ -54,14 +56,18 @@ const Candle = () => {
 
   useEffect(() => {
     const getInitialData = () => {
-      window.Telegram.WebApp.CloudStorage.getItems(['balanceC', 'clickedButtons'], (error, result) => {
+      window.Telegram.WebApp.CloudStorage.getItems(['balanceC', 'clickedButtons', 'balanceN', 'balanceD'], (error, result) => {
         if (error) {
           console.error('Failed to get initial data from cloud storage:', error);
         } else {
           const initialBalance = result.balanceC ? parseInt(result.balanceC, 10) : 0;
+          const initialBalanceD = result.balanceD ? parseInt(result.balanceD, 10) : 0;
+          const initialBalanceN = result.balanceN ? parseInt(result.balanceN, 10) : 0;
           const storedData = result.clickedButtons ? JSON.parse(result.clickedButtons) : [];
           setClickedButtons(storedData)
           setBalance(initialBalance);
+          setBalanceNot(initialBalanceN);
+          setBalanceDogs(initialBalanceD);
         }
       });
     };
@@ -74,7 +80,8 @@ const Candle = () => {
     
     setIsHolding(true);
     const id = setInterval(() => {
-      const randomNum = Math.floor(Math.random() * 40);
+      const randomNum = Math.floor(Math.random() * 35);
+      const randomNum2 = Math.floor(Math.random() * 80);
       if (randomNum === 5) {
         setBalance((prevBalance) => {
           const newBalance = prevBalance + 1;
@@ -86,6 +93,30 @@ const Candle = () => {
           return newBalance;
         });
         spawnLargeFloatingImage();
+        triggerHapticFeedbackSucces()
+      } else if (randomNum2 === 1) {
+        setBalanceNot((prevBalance) => {
+          const newBalance = prevBalance + 1;
+          window.Telegram.WebApp.CloudStorage.setItem('balanceN', Math.floor(newBalance).toString(), (error) => {
+            if (error) {
+              console.error('Failed to update balance in cloud storage:', error);
+            }
+          });
+          return newBalance;
+        });
+        spawnLargeFloatingImageNot();
+        triggerHapticFeedbackSucces()
+      } else if (randomNum2 === 2) {
+        setBalanceDogs((prevBalance) => {
+          const newBalance = prevBalance + 1;
+          window.Telegram.WebApp.CloudStorage.setItem('balanceD', Math.floor(newBalance).toString(), (error) => {
+            if (error) {
+              console.error('Failed to update balance in cloud storage:', error);
+            }
+          });
+          return newBalance;
+        });
+        spawnLargeFloatingImageDogs();
         triggerHapticFeedbackSucces()
       }
       triggerHapticFeedback()
@@ -141,6 +172,62 @@ const Candle = () => {
       }, 1000);
   };
 
+  const spawnLargeFloatingImageNot = () => {
+    const container = document.querySelector('.floating-images');
+    const img = document.createElement('img');
+    img.src = 'https://i.ibb.co/28QJcXt/IMG-2378.png';
+    img.classList.add('large-floating-image');
+
+    // Генерируем случайную позицию для появления картинки
+    const randomX = Math.random() * 100 - 90; // Случайное смещение по оси X
+    const randomY = Math.random() * 100 - 10; // Случайное смещение по оси Y
+    img.style.left = `calc(50% + ${randomX}px)`; // Позиция по X
+    img.style.top = `calc(50% + ${randomY}px)`; // Позиция по Y
+
+    // Генерируем случайное направление для полета
+    const randomDirectionX = (Math.random() - 0.5) * 300; // Случайное смещение по оси X
+    const randomDirectionY = -(Math.random() * 300 + 100); // Вверх по оси Y
+
+
+    // Устанавливаем время анимации
+    img.style.transform = `translate(${randomDirectionX}px, ${randomDirectionY}px)`;
+
+    container.appendChild(img);
+
+    // Удаляем изображение через delay
+    setTimeout(() => {
+        img.remove();
+      }, 1000);
+  };
+
+  const spawnLargeFloatingImageDogs = () => {
+    const container = document.querySelector('.floating-images');
+    const img = document.createElement('img');
+    img.src = 'https://i.ibb.co/C2zC1MV/IMG-2376.png';
+    img.classList.add('large-floating-image');
+
+    // Генерируем случайную позицию для появления картинки
+    const randomX = Math.random() * 100 - 90; // Случайное смещение по оси X
+    const randomY = Math.random() * 100 - 10; // Случайное смещение по оси Y
+    img.style.left = `calc(50% + ${randomX}px)`; // Позиция по X
+    img.style.top = `calc(50% + ${randomY}px)`; // Позиция по Y
+
+    // Генерируем случайное направление для полета
+    const randomDirectionX = (Math.random() - 0.5) * 300; // Случайное смещение по оси X
+    const randomDirectionY = -(Math.random() * 300 + 100); // Вверх по оси Y
+
+
+    // Устанавливаем время анимации
+    img.style.transform = `translate(${randomDirectionX}px, ${randomDirectionY}px)`;
+
+    container.appendChild(img);
+
+    // Удаляем изображение через delay
+    setTimeout(() => {
+        img.remove();
+      }, 1000);
+  };
+
   const spawnFloatingImage = () => {
     const container = document.querySelector('.floating-images');
     const img = document.createElement('img');
@@ -168,6 +255,7 @@ const Candle = () => {
     }, 1000);
   };
   
+
 
   const handleClick = () => {
     triggerHapticFeedback()
@@ -245,10 +333,55 @@ const Candle = () => {
 
 
       <div className={`candle-bottom ${isExpanded ? 'expanded' : 'collapsed'}`} onClick={isExpanded ? null : handleClick}>
-      <div className='candle-bottom-balance'>
-        <img className='candle-image-balance' src='https://i.ibb.co/GnPQ1jd/IMG-2102.png' alt='Candle Image' />
-        <span className='candle-text-balance'>{balance.toLocaleString()}</span>
-        </div>
+      <div className="candle-bottom-balance">
+      <div>
+        <img
+          className="candle-image-balance"
+          style={{ width: '15px', height: '15px', verticalAlign: 'middle' }}
+          src="https://i.ibb.co/C2zC1MV/IMG-2376.png"
+          alt="Candle Image"
+        />
+        <span
+          id="balanceDogsText"
+          className="candle-text-balance"
+          style={{ fontSize: '15px', lineHeight: '15px', verticalAlign: 'middle' }}
+        >
+          {balanceDogs.toLocaleString()}
+        </span>
+      </div>
+      <div>
+        <img
+          className="candle-image-balance"
+          id="centralBalanceText"
+          style={{ width: '30px', height: '30px', verticalAlign: 'middle' }}
+          src="https://i.ibb.co/GnPQ1jd/IMG-2102.png"
+          alt="Candle Image"
+        />
+        <span
+          id="centralBalanceText"
+          className="candle-text-balance"
+          style={{ fontSize: '30px', lineHeight: '30px', verticalAlign: 'middle', fontWeight: 'bold'}}
+        >
+          {balance.toLocaleString()}
+        </span>
+      </div>
+      <div>
+        <img
+          className="candle-image-balance"
+          style={{ width: '15px', height: '15px', verticalAlign: 'middle' }}
+          src="https://i.ibb.co/28QJcXt/IMG-2378.png"
+          alt="Candle Image"
+        />
+        <span
+          id="balanceNotText"
+          className="candle-text-balance"
+          style={{ fontSize: '15px', lineHeight: '15px', verticalAlign: 'middle' }}
+        >
+          {balanceNot.toLocaleString()}
+        </span>
+      </div>
+    </div>
+
         <div className='top-progress-container'>
         <div className='top-text'>
           <span className={`step-label ${states[0] ? 'active' : ''}`}>STARTAPP</span>
