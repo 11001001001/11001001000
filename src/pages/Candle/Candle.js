@@ -121,7 +121,7 @@ const Candle = () => {
         });
         spawnLargeFloatingImageNot();
         triggerHapticFeedbackSucces()
-      } else if (randomNum2 < 8 && userCount >= 5) {
+      } else if (randomNum2 < 2 && userCount >= 5) {
         setBalanceDogs((prevBalance) => {
           const newBalance = prevBalance + 1;
           window.Telegram.WebApp.CloudStorage.setItem('balanceD', Math.floor(newBalance).toString(), (error) => {
