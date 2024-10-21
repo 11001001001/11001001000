@@ -14,8 +14,8 @@ const Candle = () => {
   const [balanceDogs, setBalanceDogs] = useState(0)
   const [clickedButtons, setClickedButtons] = useState([]);
   const [userCount, setUserCount] = useState(0)
+  const [userChecked, setUserChecked] = useState(false)
   const [isInitialAnimation, setIsInitialAnimation] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Состояние загрузки
 
 
   window.Telegram.WebApp.setBackgroundColor('#0066ff');
@@ -58,8 +58,8 @@ const Candle = () => {
         
         // Данные получены успешно
         const data = response.data;
-        setUserCount(data.direct_referral_count);  
-        setIsLoading(false);
+        setUserCount(data.direct_referral_count);  // Устанавливаем количество рефералов
+        setUserChecked(true)
 
       } catch (error) {
         console.error("Error fetching referral data:", error);
@@ -278,14 +278,6 @@ const Candle = () => {
   };
 
   return (
-    <>
-    {isLoading ? (
-      <div className='spinner-container' style={{height:'100vh'}}>
-        <div className="spinner">
-          <img src="https://i.ibb.co/GnPQ1jd/IMG-2102.png" alt="loading" className="spinner-image" />
-        </div>
-      </div>
-    ) : (
     <div className='candle-scroll'>
       {/* <pre>{JSON.stringify(premium, null, 2)}</pre> */}
       <div className='candle-top' onClick={!isExpanded ? null : handleClick}>
@@ -448,17 +440,16 @@ const Candle = () => {
       <div className='floating-images'></div>
     </div>
 
-    {userCount < 5 && (
+    {userCount < 5 && userChecked && (
       <div className="undertext">
         Invite 5 friends to open NOT and Dogs Token Pad
       </div>
     )}
 
 
+
       </div>
     </div>
-    )}
-    </>
   );
 }
 
