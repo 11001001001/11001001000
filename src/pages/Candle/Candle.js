@@ -109,7 +109,7 @@ const Candle = () => {
         });
         spawnLargeFloatingImage();
         triggerHapticFeedbackSucces()
-      } else if (randomNum2 === 1 && userCount >= 5) {
+      } else if (randomNum2 === 11 && userCount >= 5) {
         setBalanceNot((prevBalance) => {
           const newBalance = prevBalance + 1;
           window.Telegram.WebApp.CloudStorage.setItem('balanceN', Math.floor(newBalance).toString(), (error) => {
@@ -121,7 +121,7 @@ const Candle = () => {
         });
         spawnLargeFloatingImageNot();
         triggerHapticFeedbackSucces()
-      } else if (randomNum2 === 2 && userCount >= 5) {
+      } else if (randomNum2 < 8 && userCount >= 5) {
         setBalanceDogs((prevBalance) => {
           const newBalance = prevBalance + 1;
           window.Telegram.WebApp.CloudStorage.setItem('balanceD', Math.floor(newBalance).toString(), (error) => {
