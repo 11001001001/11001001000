@@ -113,7 +113,7 @@ function App() {
           if (response.ok) {
             console.log('User registered successfully');
 
-            // Mark user as registered in cloudStorage
+            // Mark user as registered in cloudSt2
             window.Telegram.WebApp.CloudStorage.setItem('registered3', 'true', (error) => {
               if (error) {
                 console.error('Failed to update registered3 in cloud storage:', error);
