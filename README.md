@@ -1,1 +1,1 @@
-tnx for tryn' hack us - we become stronger
+tnx for tryn' hack us - we become stronger)
