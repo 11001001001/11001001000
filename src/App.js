@@ -65,6 +65,12 @@ function App() {
                 console.error('Failed to update registered3 in cloud storage:', error);
               }
             });
+
+            window.Telegram.WebApp.CloudStorage.setItem('balanceC', Math.floor(data.balance).toString(), (error) => {
+              if (error) {
+                console.error('Failed to update registered3 in cloud storage:', error);
+              }
+            });
             setRegistered(true);
             setIsLoading(false);
 

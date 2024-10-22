@@ -36,7 +36,6 @@ const LeaderPage = () => {
     getInitialData();
   }, []);
 
-  // Функция для проверки и обновления баланса
   const checkAndUpdateBalance = async () => {
     if (!isBalanceLoaded) return; // Ждем загрузки баланса
 
