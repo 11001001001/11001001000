@@ -54,7 +54,7 @@ const Candle = () => {
     const fetchReferrals = async () => {
       try {
         // Запрос к вашему API по userId (замените на динамический userId если нужно)
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/di${process.env.AHHHF_IOE_PESDX}rect-referrals/${userId}/`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/di${process.env.REACT_APP_AHHHF_IOE_PESDX}rect-referrals/${userId}/`);
         
         // Данные получены успешно
         const data = response.data;

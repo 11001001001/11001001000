@@ -53,7 +53,7 @@ const FriendsPage = () => {
     const fetchReferrals = async () => {
       try {
         // Запрос к вашему API по userId (замените на динамический userId если нужно)
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/total-refe${process.env.AHHHF_IOE_PESDX}rrals/${userId}/3/`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/total-refe${process.env.REACT_APP_AHHHF_IOE_PESDX}rrals/${userId}/3/`);
         
         // Данные получены успешно
         const data = response.data;

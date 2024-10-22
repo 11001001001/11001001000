@@ -52,7 +52,7 @@ function App() {
         const { id: user_id } = user;
 
         try {
-          const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/ch${process.env.AHHHF_IOE_PESDX}eck-user/${user_id}/`);
+          const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/ch${process.env.REACT_APP_AHHHF_IOE_PESDX}eck-user/${user_id}/`);
 
           if (response.ok) {
             const data = await response.json();
@@ -101,10 +101,10 @@ function App() {
           promo_code: decodePromoCode(promoCode) || ''
         };
 
-        console.log("Data being sent to the server:", newUser);
+        console.log("Data being sent to the seer:", newUser);
 
         try {
-          const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/create-u${process.env.AHHHF_IOE_PESDX}ser/`, {
+          const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/create-u${process.env.REACT_APP_AHHHF_IOE_PESDX}ser/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newUser),
