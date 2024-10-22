@@ -29,7 +29,7 @@ const LeaderPage = () => {
         } else {
           const initialBalance = result.balanceC ? parseInt(result.balanceC, 10) : 0;
           setBalance(initialBalance);
-          setIsBalanceLoaded(true); // Устанавливаем флаг, когда баланс загружен
+          setIsBalanceLoaded(true); 
         }
       });
     };
