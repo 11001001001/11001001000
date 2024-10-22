@@ -8,7 +8,7 @@ const LeaderPage = () => {
   const [totalUsers, setTotalUsers] = useState(null); 
   const [balance, setBalance] = useState(0);
   const [isBalanceLoaded, setIsBalanceLoaded] = useState(false); // Флаг для отслеживания загрузки баланса
-  const [isLoading, setIsLoading] = useState(false); // Состояние загрузки
+  const [isLoading, setIsLoading] = useState(true); // Состояние загрузки
   const [isChecked, setIsChecked] = useState(true); // Флаг для контроля дополнительных проверок
 
   const picture = 'https://freesvg.org/img/abstract-user-flat-4.png'; // URL аватара по умолчанию
