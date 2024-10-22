@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './Candle.css';
-import Task from '../../components/task/Task.js'
-import axios from 'axios';  // Импортируем axios для выполнения запросов
-
+import Task from '../../components/task/Task.js';
+import axios from 'axios';
 
 const Candle = () => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [states, setStates] = useState([true, true, false, false]);
   const [isHolding, setIsHolding] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
-  const [balance, setBalance] = useState(0)
-  const [balanceNot, setBalanceNot] = useState(0)
-  const [balanceDogs, setBalanceDogs] = useState(0)
+  const [balance, setBalance] = useState(0);
+  const [balanceNot, setBalanceNot] = useState(0);
+  const [balanceDogs, setBalanceDogs] = useState(0);
   const [clickedButtons, setClickedButtons] = useState([]);
-  const [userCount, setUserCount] = useState(0)
-  const [userChecked, setUserChecked] = useState(false)
+  const [userCount, setUserCount] = useState(0);
+  const [userChecked, setUserChecked] = useState(false);
   const [isInitialAnimation, setIsInitialAnimation] = useState(false);
-
 
   window.Telegram.WebApp.setBackgroundColor('#0066ff');
   window.Telegram.WebApp.setHeaderColor('#0066ff');
@@ -41,25 +39,28 @@ const Candle = () => {
 
   useEffect(() => {
     if (balance === 1) {
-      setIsInitialAnimation(true)
-    const timer = setTimeout(() => {
-      setIsInitialAnimation(false); // Через 1 секунду убираем анимацию
-    }, 1000);
+      setIsInitialAnimation(true);
+      const timer = setTimeout(() => {
+        setIsInitialAnimation(false); // Через 1 секунду убираем анимацию
+      }, 1000);
 
-    return () => clearTimeout(timer); // Очищаем таймер при размонтировании компонента
+      return () => clearTimeout(timer); // Очищаем таймер при размонтировании компонента
     }
   }, [balance]);
 
   useEffect(() => {
     const fetchReferrals = async () => {
       try {
-        // Запрос к вашему API по userId (замените на динамический userId если нужно)
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/direct-referrals/${userId}/`);
-        
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/direct-referrals/${userId}/`, {
+          headers: {
+            'X-CSRFToken': getCookie('csrftoken')  // Добавляем CSRF токен в заголовок
+          }
+        });
+
         // Данные получены успешно
         const data = response.data;
         setUserCount(data.direct_referral_count);  // Устанавливаем количество рефералов
-        setUserChecked(true)
+        setUserChecked(true);
 
       } catch (error) {
         console.error("Error fetching referral data:", error);
@@ -68,6 +69,23 @@ const Candle = () => {
 
     fetchReferrals();  // Вызываем функцию получения данных при загрузке компонента
   }, []);
+
+  // Функция для получения CSRF токена из cookies
+  const getCookie = (name) => {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        // Если имя cookie совпадает с искомым
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  };
 
   useEffect(() => {
     const getInitialData = () => {
