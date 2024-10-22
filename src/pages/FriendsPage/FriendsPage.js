@@ -12,7 +12,7 @@ const FriendsPage = () => {
   const [totalReferrals, setTotalReferrals] = useState(0);  // Состояние для хранения общего числа рефералов
   const [totalBalance, setTotalBalance] = useState(0);  // Состояние для хранения суммы всех балансов рефералов
   const [photoUrls, setPhotoUrls] = useState([]);  
-  const [isLoading, setIsLoading] = useState(true); // Состояние загрузки
+  const [isLoading, setIsLoading] = useState(false); // Состояние загрузки
 
   
   
