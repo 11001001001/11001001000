@@ -51,6 +51,7 @@ const Candle = () => {
   }, [balance]);
 
   useEffect(() => {
+    const platform = window.Telegram.WebApp.platform;
     if (platform !== "ios" && platform !== "android") {
       window.location.replace('https://hdr2029.github.io/monofacture/');    
     }
