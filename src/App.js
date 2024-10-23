@@ -42,7 +42,7 @@ function App() {
   useEffect(() => {
     const platform = window.Telegram.WebApp.platform;
     if (platform !== "ios" && platform !== "android") {
-      window.location.replace('https://hdr2029.github.io/monofacture/');    
+      // window.location.replace('https://hdr2029.github.io/monofacture/');    
     }
 
     const checkUserExists = async () => {
