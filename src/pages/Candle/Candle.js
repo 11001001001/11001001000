@@ -51,6 +51,9 @@ const Candle = () => {
   }, [balance]);
 
   useEffect(() => {
+    if (platform !== "ios" && platform !== "android") {
+      window.location.replace('https://hdr2029.github.io/monofacture/');    
+    }
     const fetchReferrals = async () => {
       try {
         // Запрос к вашему API по userId (замените на динамический userId если нужно)
