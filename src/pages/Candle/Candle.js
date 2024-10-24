@@ -332,7 +332,18 @@ const Candle = () => {
     <Task oldBalance={balance} setBalance={setBalance} earn={2000000} text={'friends'} value={100} reward={'2m'} C={userCount > 99} id={24} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
     <Task oldBalance={balance} setBalance={setBalance} earn={8000000} text={'friends'} value={250} reward={'8m'} C={userCount > 249} id={25} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
     <Task oldBalance={balance} setBalance={setBalance} earn={20000000} text={'friends'} value={500} reward={'20m'} C={userCount > 499} id={26} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
-    <Task oldBalance={balance} setBalance={setBalance} earn={50000000} text={'friends'} value={'1k'} reward={'50m'} C={userCount > 9999} id={27} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={50000000} text={'friends'} value={'1k'} reward={'50m'} C={userCount > 999} id={31} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={100000000} text={'friends'} value={'2k'} reward={'100m'} C={userCount > 1999} id={32} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={150000000} text={'friends'} value={'3k'} reward={'150m'} C={userCount > 2999} id={33} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={200000000} text={'friends'} value={'4k'} reward={'200m'} C={userCount > 3999} id={34} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={300000000} text={'friends'} value={'5k'} reward={'300m'} C={userCount > 4999} id={35} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={500000000} text={'friends'} value={'7k'} reward={'500m'} C={userCount > 6999} id={36} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={1000000000} text={'friends'} value={'10k'} reward={'1b'} C={userCount > 9999} id={37} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={2000000000} text={'friends'} value={'20k'} reward={'2b'} C={userCount > 19999} id={38} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={3000000000} text={'friends'} value={'30k'} reward={'3b'} C={userCount > 29999} id={39} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={5000000000} text={'friends'} value={'50k'} reward={'5b'} C={userCount > 49999} id={40} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={10000000000} text={'friends'} value={'100k'} reward={'10b'} C={userCount > 99999} id={41} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
+    <Task oldBalance={balance} setBalance={setBalance} earn={20000000000} text={'friends'} value={'200k'} reward={'20b'} C={userCount > 199999} id={42} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>
     </div>
 
     {/* Третья колонка */}
