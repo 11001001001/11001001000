@@ -148,6 +148,31 @@ const Candle = () => {
     setIsHolding(false);
     clearInterval(intervalId);
   };
+
+  useEffect(() => {
+    // Отключаем контекстное меню при долгом нажатии
+    const handleContextMenu = (event) => {
+      if (event.target.tagName === 'IMG') {
+        event.preventDefault();
+      }
+    };
+
+    // Отключаем длинное нажатие на сенсорных устройствах
+    const handleTouchStart = (event) => {
+      if (event.target.tagName === 'IMG') {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("touchstart", handleTouchStart);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("touchstart", handleTouchStart);
+    };
+  }, []);
+  
   useEffect(() => {
     // Очистка интервала и сброс состояний при размонтировании компонента
     return () => {
