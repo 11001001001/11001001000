@@ -8,14 +8,6 @@ html, body {
     -webkit-user-drag: none;
   }
 
-  img {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-}
-  
   .app {
     display: flex;
     flex-direction: column;
