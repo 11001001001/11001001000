@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';  // Импортируем axios для выполнения запросов
 import './FriendsPage.css';
-import refPic from '../../photo_2024-10-02 15.54.22.jpeg';
+import refPic from '../../8916311451451116511.jpeg';
 
 const FriendsPage = () => {
   window.Telegram.WebApp.setBackgroundColor('#000');
@@ -147,7 +147,7 @@ const FriendsPage = () => {
 
       <h1 className="header-title">How it works</h1>
       <img 
-        src={refPic} 
+        src='https://jesus3.s3.eu-north-1.amazonaws.com/8916311451451116511.jpeg' 
         alt="picOfRef" 
         className="node-tree-image"
       />

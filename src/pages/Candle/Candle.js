@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './Candle.css';
 import Task from '../../components/task/Task.js'
 import axios from 'axios';  // Импортируем axios для выполнения запросов
-import DJP from './DurovJesus.png'
 
 
 const Candle = () => {
@@ -276,7 +275,7 @@ const Candle = () => {
   const spawnFloatingImage = () => {
     const container = document.querySelector('.floating-images');
     const img = document.createElement('img');
-    img.src = 'https://i.pinimg.com/originals/c4/e3/ce/c4e3ceda388a4ad225a9247e548c127f.png';
+    img.src = 'https://jesus3.s3.eu-north-1.amazonaws.com/146614614666141.png';
     img.classList.add('small-floating-image');
   
     // Генерируем случайную позицию для появления картинки
