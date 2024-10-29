@@ -281,20 +281,11 @@
     width: 50%; /* Изображение занимает 50% ширины родительского блока */
     height: auto;
     transition: all 0.3s ease; /* Плавные изменения */
-    -webkit-user-select: none; /* Отключаем выделение на iOS */
-    -moz-user-select: none; /* Отключаем выделение в Firefox */
-    -ms-user-select: none; /* Отключаем выделение в IE */
-    user-select: none; /* Отключаем выделение в других браузерах */
-    pointer-events: none; /* Полностью отключаем взаимодействие */
+    
   }
   
   .hands-image.active {
     width: 45%; /* Уменьшение размера до 45% */
-    -webkit-user-select: none; /* Отключаем выделение на iOS */
-    -moz-user-select: none; /* Отключаем выделение в Firefox */
-    -ms-user-select: none; /* Отключаем выделение в IE */
-    user-select: none; /* Отключаем выделение в других браузерах */
-    pointer-events: none; /* Полностью отключаем взаимодействие */
   }
   
   .floating-images {
