@@ -470,7 +470,7 @@ const Candle = () => {
     <div className={`hands ${isHolding ? 'active' : ''}`}>
     <img
         className={`hands-image ${isHolding ? 'active' : ''}`}
-        src={DJP}
+        src='https://i.pinimg.com/originals/c4/e3/ce/c4e3ceda388a4ad225a9247e548c127f.png'
         alt='Hands Image'
         onMouseDown={handleHold}
         onMouseUp={handleRelease}
