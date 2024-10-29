@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Candle.css';
 import Task from '../../components/task/Task.js'
 import axios from 'axios';  // Импортируем axios для выполнения запросов
+import DJP from './DurovJesus.png'
 
 
 const Candle = () => {
@@ -469,7 +470,7 @@ const Candle = () => {
     <div className={`hands ${isHolding ? 'active' : ''}`}>
     <img
         className={`hands-image ${isHolding ? 'active' : ''}`}
-        src='https://i.pinimg.com/originals/c4/e3/ce/c4e3ceda388a4ad225a9247e548c127f.png'
+        src={DJP}
         alt='Hands Image'
         onMouseDown={handleHold}
         onMouseUp={handleRelease}
