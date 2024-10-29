@@ -475,6 +475,7 @@ const Candle = () => {
         onMouseUp={handleRelease}
         onTouchStart={handleHold}
         onTouchEnd={handleRelease}
+        onContextMenu={(e) => e.preventDefault()} // Отключаем контекстное меню
         
       />
 
