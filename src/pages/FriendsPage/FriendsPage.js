@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';  // Импортируем axios для выполнения запросов
 import './FriendsPage.css';
-import refPic from '../../8916311451451116511.jpeg';
 
 const FriendsPage = () => {
   window.Telegram.WebApp.setBackgroundColor('#000');
