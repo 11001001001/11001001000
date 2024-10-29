@@ -466,16 +466,18 @@ const Candle = () => {
         </div>
       </div>
     </div>
-    <div className={`hands ${isHolding ? 'active' : ''}`}>
+    <div 
+    onMouseDown={handleHold}
+    onMouseUp={handleRelease}
+    onTouchStart={handleHold}
+    onTouchEnd={handleRelease}
+    onContextMenu={(e) => e.preventDefault()} // Отключаем контекстное меню
+    className={`hands ${isHolding ? 'active' : ''}`}>
     <img
         className={`hands-image ${isHolding ? 'active' : ''}`}
         src='https://jesus3.s3.eu-north-1.amazonaws.com/146614614666141.png'
         alt='Hands Image'
-        onMouseDown={handleHold}
-        onMouseUp={handleRelease}
-        onTouchStart={handleHold}
-        onTouchEnd={handleRelease}
-        onContextMenu={(e) => e.preventDefault()} // Отключаем контекстное меню
+        
         
       />
 
