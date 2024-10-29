@@ -264,8 +264,6 @@
     margin: 20px;
     width: 50%; /* Изображение занимает 50% ширины родительского блока */
     height: auto;
-    -webkit-touch-callout: none; 
-    
     transition: all 0.3s ease; /* Плавные изменения */
   }
   

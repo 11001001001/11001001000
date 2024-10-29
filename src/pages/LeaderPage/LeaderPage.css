@@ -8,6 +8,11 @@
     align-items: center;
     width: 100%;
     background-color: #000; /* Черный фон для блока */
+    -webkit-user-select: none; /* Отключаем выделение на iOS */
+    -moz-user-select: none; /* Отключаем выделение в Firefox */
+    -ms-user-select: none; /* Отключаем выделение в IE */
+    user-select: none; /* Отключаем выделение в других браузерах */
+    pointer-events: none;
 
   }
 
@@ -103,6 +108,7 @@
   overflow-y: auto; /* Добавляем вертикальную прокрутку */
   overflow-x: hidden;
   margin-top: 10px;
+  
 }
 
 .spinner-container {
