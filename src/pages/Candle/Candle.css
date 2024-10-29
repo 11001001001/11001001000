@@ -15,11 +15,7 @@
     border-bottom: 1px solid #247cff;
     background-color: #0066ff;
     z-index: 2;
-    -webkit-user-select: none; /* Отключаем выделение на iOS */
-    -moz-user-select: none; /* Отключаем выделение в Firefox */
-    -ms-user-select: none; /* Отключаем выделение в IE */
-    user-select: none; /* Отключаем выделение в других браузерах */
-    pointer-events: none; /* Полностью отключаем взаимодействие */
+    
 
 }
 
