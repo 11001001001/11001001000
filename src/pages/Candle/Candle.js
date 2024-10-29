@@ -299,9 +299,7 @@ const Candle = () => {
     }, 1000);
   };
   
-  const preventContextMenu = (event) => {
-    event.preventDefault();
-  };
+
 
   const handleClick = () => {
     triggerHapticFeedback()
@@ -477,7 +475,7 @@ const Candle = () => {
         onMouseUp={handleRelease}
         onTouchStart={handleHold}
         onTouchEnd={handleRelease}
-        onContextMenu={preventContextMenu} 
+        
       />
 
       <div className='floating-images'></div>
