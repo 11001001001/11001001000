@@ -27,11 +27,17 @@
 
 .leader-header {
     text-align: center;
+    -webkit-user-select: none; /* Отключаем выделение на iOS */
+    -moz-user-select: none; /* Отключаем выделение в Firefox */
+    -ms-user-select: none; /* Отключаем выделение в IE */
+    user-select: none; /* Отключаем выделение в других браузерах */
+    pointer-events: none; /* Полностью отключаем взаимодействие */
   }
   
   .leader-header img {
     width: 80px;
     height: auto; /* Максимальная высота картинки */
+    
   }
 .header-up {
     font-size: 30px;
