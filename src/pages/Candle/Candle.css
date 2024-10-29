@@ -254,11 +254,7 @@
     justify-content: center; /* Центрирование изображения внутри блока */
     position: relative;
     border-radius: 50%;
-    -webkit-user-select: none; /* Отключаем выделение на iOS */
-    -moz-user-select: none; /* Отключаем выделение в Firefox */
-    -ms-user-select: none; /* Отключаем выделение в IE */
-    user-select: none; /* Отключаем выделение в других браузерах */
-    pointer-events: none; /* Полностью отключаем взаимодействие */
+    
   }
   .hands.active {
     background: radial-gradient(circle, rgba(255, 255, 255, 0.92) 0%, rgba(246, 238, 103, 0) 50%); /* Градиент от центра к краям */
