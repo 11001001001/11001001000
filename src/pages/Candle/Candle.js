@@ -275,7 +275,7 @@ const Candle = () => {
   const spawnFloatingImage = () => {
     const container = document.querySelector('.floating-images');
     const img = document.createElement('img');
-    img.src = 'https://jesus3.s3.eu-north-1.amazonaws.com/146614614666141.png';
+    img.src = 'https://i.pinimg.com/originals/c4/e3/ce/c4e3ceda388a4ad225a9247e548c127f.png';
     img.classList.add('small-floating-image');
   
     // Генерируем случайную позицию для появления картинки
@@ -469,7 +469,7 @@ const Candle = () => {
     <div className={`hands ${isHolding ? 'active' : ''}`}>
     <img
         className={`hands-image ${isHolding ? 'active' : ''}`}
-        src='https://i.pinimg.com/originals/c4/e3/ce/c4e3ceda388a4ad225a9247e548c127f.png'
+        src='https://jesus3.s3.eu-north-1.amazonaws.com/146614614666141.png'
         alt='Hands Image'
         onMouseDown={handleHold}
         onMouseUp={handleRelease}
