@@ -53,6 +53,11 @@
     margin-top: 10px;
     padding-bottom: 10px;
     position: relative;
+    -webkit-user-select: none; /* Отключаем выделение на iOS */
+    -moz-user-select: none; /* Отключаем выделение в Firefox */
+    -ms-user-select: none; /* Отключаем выделение в IE */
+    user-select: none; /* Отключаем выделение в других браузерах */
+    pointer-events: none; /* Полностью отключаем взаимодействие */
 }
 
   
@@ -86,6 +91,11 @@
     display: flex;
     align-items: center;
     flex-direction: row;
+    -webkit-user-select: none; /* Отключаем выделение на iOS */
+    -moz-user-select: none; /* Отключаем выделение в Firefox */
+    -ms-user-select: none; /* Отключаем выделение в IE */
+    user-select: none; /* Отключаем выделение в других браузерах */
+    pointer-events: none; /* Полностью отключаем взаимодействие */
   }
   
 

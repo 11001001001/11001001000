@@ -2,6 +2,11 @@
     justify-content: space-between;
     text-align: center;
     padding: 0 20px;
+    -webkit-user-select: none; /* Отключаем выделение на iOS */
+    -moz-user-select: none; /* Отключаем выделение в Firefox */
+    -ms-user-select: none; /* Отключаем выделение в IE */
+    user-select: none; /* Отключаем выделение в других браузерах */
+    pointer-events: none; /* Полностью отключаем взаимодействие */
   }
   
   .description-text {
@@ -16,6 +21,11 @@
     margin: 25px 0;
     display: flex;  /* Flex-контейнер для выравнивания изображения и текста */
     align-items: center;  /* Центрируем изображение и текст по вертикали */
+    -webkit-user-select: none; /* Отключаем выделение на iOS */
+    -moz-user-select: none; /* Отключаем выделение в Firefox */
+    -ms-user-select: none; /* Отключаем выделение в IE */
+    user-select: none; /* Отключаем выделение в других браузерах */
+    pointer-events: none; /* Полностью отключаем взаимодействие */
   }
   
   .token-image {
