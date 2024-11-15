@@ -113,31 +113,32 @@ const Candle = () => {
         });
         spawnLargeFloatingImage();
         triggerHapticFeedbackSucces()
-      } else if (randomNum2 === 11 && userCount >= 5) {
-        setBalanceNot((prevBalance) => {
-          const newBalance = prevBalance + 1;
-          window.Telegram.WebApp.CloudStorage.setItem('balanceN', Math.floor(newBalance).toString(), (error) => {
-            if (error) {
-              console.error('Failed to update balance in cloud storage:', error);
-            }
-          });
-          return newBalance;
-        });
-        spawnLargeFloatingImageNot();
-        triggerHapticFeedbackSucces()
-      } else if (randomNum2 < 2 && userCount >= 5) {
-        setBalanceDogs((prevBalance) => {
-          const newBalance = prevBalance + 1;
-          window.Telegram.WebApp.CloudStorage.setItem('balanceD', Math.floor(newBalance).toString(), (error) => {
-            if (error) {
-              console.error('Failed to update balance in cloud storage:', error);
-            }
-          });
-          return newBalance;
-        });
-        spawnLargeFloatingImageDogs();
-        triggerHapticFeedbackSucces()
       }
+      // } else if (randomNum2 === 11 && userCount >= 5) {
+      //   setBalanceNot((prevBalance) => {
+      //     const newBalance = prevBalance + 1;
+      //     window.Telegram.WebApp.CloudStorage.setItem('balanceN', Math.floor(newBalance).toString(), (error) => {
+      //       if (error) {
+      //         console.error('Failed to update balance in cloud storage:', error);
+      //       }
+      //     });
+      //     return newBalance;
+      //   });
+      //   spawnLargeFloatingImageNot();
+      //   triggerHapticFeedbackSucces()
+      // } else if (randomNum2 < 2 && userCount >= 5) {
+      //   setBalanceDogs((prevBalance) => {
+      //     const newBalance = prevBalance + 1;
+      //     window.Telegram.WebApp.CloudStorage.setItem('balanceD', Math.floor(newBalance).toString(), (error) => {
+      //       if (error) {
+      //         console.error('Failed to update balance in cloud storage:', error);
+      //       }
+      //     });
+      //     return newBalance;
+      //   });
+      //   spawnLargeFloatingImageDogs();
+      //   triggerHapticFeedbackSucces()
+      // }
       triggerHapticFeedback()
       spawnFloatingImage();
     }, 200);
