@@ -6,7 +6,7 @@ import axios from 'axios';  // Импортируем axios для выполн�
 
 const Candle = () => {
   const [isExpanded, setIsExpanded] = useState(true);
-  const [states, setStates] = useState([true, true, false, false]);
+  const [states, setStates] = useState([true, true, true, false]);
   const [isHolding, setIsHolding] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
   const [balance, setBalance] = useState(0)
@@ -18,8 +18,10 @@ const Candle = () => {
   const [isInitialAnimation, setIsInitialAnimation] = useState(false);
 
 
-  window.Telegram.WebApp.setBackgroundColor('#0066ff');
-  window.Telegram.WebApp.setHeaderColor('#0066ff');
+  // window.Telegram.WebApp.setBackgroundColor('#0066ff');
+  // window.Telegram.WebApp.setHeaderColor('#0066ff');
+  window.Telegram.WebApp.setBackgroundColor('#FF9900');
+  window.Telegram.WebApp.setHeaderColor('#FF9900');
   const premium = window.Telegram.WebApp.initDataUnsafe.user.is_premium;
   const userId = window.Telegram.WebApp.initDataUnsafe.user.id; 
 
@@ -390,7 +392,7 @@ const Candle = () => {
 
       <div className={`candle-bottom ${isExpanded ? 'expanded' : 'collapsed'} ${isInitialAnimation ? 'initial' : ''}`} onClick={isExpanded ? null : handleClick}>
       <div className="candle-bottom-balance">
-      <div>
+      {/* <div>
         <img
           className="candle-image-balance"
           style={{ width: '15px', height: '15px', verticalAlign: 'middle' }}
@@ -404,7 +406,7 @@ const Candle = () => {
         >
           {balanceDogs.toLocaleString()}
         </span>
-      </div>
+      </div> */}
       <div>
         <img
           className="candle-image-balance"
@@ -421,7 +423,7 @@ const Candle = () => {
           {balance.toLocaleString()}
         </span>
       </div>
-      <div>
+      {/* <div>
         <img
           className="candle-image-balance"
           style={{ width: '15px', height: '15px', verticalAlign: 'middle' }}
@@ -435,7 +437,7 @@ const Candle = () => {
         >
           {balanceNot.toLocaleString()}
         </span>
-      </div>
+      </div> */}
     </div>
 
         <div className='top-progress-container'>
@@ -485,11 +487,11 @@ const Candle = () => {
       <div className='floating-images'></div>
     </div>
 
-    {userCount < 5 && userChecked && (
+    {/* {userCount < 5 && userChecked && (
       <div className="undertext">
         Invite 5 friends to open NOT and Dogs Token Pad
       </div>
-    )}
+    )} */}
 
 
 

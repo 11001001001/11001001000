@@ -1,0 +1,246 @@
+/* Общие стили для прокрутки */
+.pcs-scroll {
+    height: 90vh;
+    overflow-y: auto;
+    color: #fff;
+    background-color: #000;
+}
+
+/* Верхняя часть */
+.pcs-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    border-bottom: 0.5px solid #444;
+}
+
+
+/* Кнопка */
+.pcs-button {
+    margin-top: 25vh;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.telegram-button {
+    width: 80%;
+    padding: 10px 0;
+    background-color: #f9f9f9;
+    color: #000000;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.telegram-button:hover {
+    background-color: #b4b4b4;
+}
+
+/* Общая информация */
+.pcs-total {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pcs-total-row {
+    display: flex;
+    justify-content: space-between;
+    width: 90%; /* Изменено на 90% */
+    font-size: 28px;
+}
+
+/* Средняя часть с карточками */
+.pcs-middle {
+    margin: 10px 10px;
+
+}
+
+
+.pcs-block {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.pcs-block-image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.pcs-block-text {
+    flex: 1;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pcs-block-row {
+    display: flex;
+    justify-content: space-between;
+}
+.pcs-block-quantity,
+.pcs-block-name {
+    font-weight: bold;
+}
+
+
+.pcs-block-price,
+.pcs-block-total {
+    font-size: 14px;
+    color: #555;
+}
+
+
+/* Общий стиль для контейнера */
+.overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.67);
+    animation: fadeIn 0.6s forwards;
+}
+
+.overlay-container.fade-out {
+    animation: fadeOut 0.6s forwards;
+}
+
+/* Блок с контентом */
+.overlay-block {
+    width: 90%;
+    height: 90vh;
+    margin: 5px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 15px;
+    border: 1px white solid;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    animation: slideInFromBottom 0.6s forwards;
+}
+
+.overlay-block.scale-out {
+    animation: slideOutToBottom 0.6s forwards;
+}
+
+/* Стили для текстовых блоков */
+.text-section {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    
+}
+
+.large-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.small-text {
+    font-size: 12px;
+    color: #585858;
+    margin-bottom: 10px;
+}
+
+.medium-text {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Расстояние между текстом и иконкой */
+}
+
+/* Иконка копирования */
+.icon-copy img {
+    width: 18px; /* Настройте размер иконки */
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Кнопка закрытия */
+.close-button {
+    width: 50%;
+    padding: 10px 0;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.close-button:hover {
+    background-color: #0056b3;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToBottom {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}

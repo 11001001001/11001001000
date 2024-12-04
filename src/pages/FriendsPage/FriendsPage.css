@@ -113,6 +113,54 @@
   .invite-button:hover {
       background-color: #f0f0f0;
   }
+  .invite-button2 {
+    width: 50%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    height: 6vh;
+    background: rgb(255, 174, 0);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Центрируем содержимое кнопки */
+    position: relative;
+    box-shadow: 0 0 25px rgb(255, 174, 0);
+    transition: 0.5s;
+    transition-property: box-shadow;
+}
+
+.invite-button2:hover {
+    box-shadow: 0 0 5px rgb(255, 174, 0),
+                0 0 25px rgb(255, 174, 0),
+                0 0 50px rgb(255, 174, 0),
+                0 0 100px rgb(255, 174, 0);
+}
+
+.spinner2 {
+    border: 4px solid rgba(255, 255, 255, 0); /* Светлый цвет фона */
+    border-top: 3px solid #000000; /* Цвет самого индикатора */
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin2 1s linear infinite;
+    position: absolute; /* Чтобы занимал место текста */
+}
+
+@keyframes spin2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
   
   .referrals-section {
     display: flex;

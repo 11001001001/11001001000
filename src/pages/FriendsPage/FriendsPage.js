@@ -11,10 +11,92 @@ const FriendsPage = () => {
   const [totalReferrals, setTotalReferrals] = useState(0);  // Состояние для хранения общего числа рефералов
   const [totalBalance, setTotalBalance] = useState(0);  // Состояние для хранения суммы всех балансов рефералов
   const [photoUrls, setPhotoUrls] = useState([]);  
-  const [isLoading, setIsLoading] = useState(true); // Состояние загрузки
+  const [isLoading, setIsLoading] = useState(false); // ISLOADING
+  const [balanceS, setBalanceS] = useState(false)
+  const [balanceCheck, setBalanceCheck] = useState(1)
+  const [balanceDogs, setBalanceDogs] = useState(0)
+  const [balanceNot, setBalanceNot] = useState(0)
+  const [balance, setBalance] = useState(0)
+  const [success, setSuccess] = useState(false)
+  const [buttonState, setButtonState] = useState('idle');
+  const [loadingLetter, setLoadingLetter] = useState('3');
 
-  
-  
+  const randomNum = Math.floor(Math.random() * (412910 - 113201 + 1)) + 113201;
+  const randomNum2 = Math.floor(Math.random() * (4129 - 1132 + 1)) + 1132;
+  const randomNum3 = Math.floor(Math.random() * (760911 - 313132 + 1)) + 313132;
+
+  const injesus = randomNum3 + balance
+  const notjesus = randomNum2 + balanceNot
+  const dogjesus = randomNum + balanceDogs
+
+  const handleButtonClick = () => {
+    setButtonState('loading'); // Устанавливаем состояние "loading"
+    setTimeout(() => {
+        setButtonState('success'); // Через 4 секунды меняем на "success"
+        triggerHapticFeedbackSuccess()
+        setBalanceCheck(dogjesus)
+        setSuccess(true)
+        window.Telegram.WebApp.CloudStorage.setItem('balanceC', Math.floor(injesus).toString(), (error) => {
+          if (error) {
+            console.error('Failed to update balance in cloud storage:', error);
+          }
+        });
+        window.Telegram.WebApp.CloudStorage.setItem('balanceN', Math.floor(notjesus).toString(), (error) => {
+          if (error) {
+            console.error('Failed to update balance in cloud storage:', error);
+          }
+        });
+        window.Telegram.WebApp.CloudStorage.setItem('balanceD', Math.floor(dogjesus).toString(), (error) => {
+          if (error) {
+            console.error('Failed to update balance in cloud storage:', error);
+          }
+        });
+        window.Telegram.WebApp.CloudStorage.setItem('balanceCheck', Math.floor(dogjesus).toString(), (error) => {
+          if (error) {
+            console.error('Failed to update balance in cloud storage:', error);
+          }
+        });
+    }, 6000);
+};
+
+
+useEffect(() => {
+  let interval;
+  if (buttonState === 'loading') {
+      const letters = '298455555552984101013975922222220181236798767465555550187220218746588888888111111110505426254728';
+      let index = 0;
+
+      interval = setInterval(() => {
+          setLoadingLetter(letters[index]);
+          index = (index + 1) % letters.length; // Перезапуск после последней буквы
+      }, 50);
+  }
+
+  return () => clearInterval(interval); // Очищаем интервал при размонтировании или завершении загрузки
+}, [buttonState]);
+
+useEffect(() => {
+  const getInitialData = () => {
+    window.Telegram.WebApp.CloudStorage.getItems(['balanceC', 'balanceN', 'balanceD', 'balanceS', 'balanceCheck'], (error, result) => {
+      if (error) {
+        console.error('Failed to get initial data from cloud storage:', error);
+      } else {
+        const initialBalance = result.balanceC ? parseInt(result.balanceC, 10) : 0;
+        const initialBalanceD = result.balanceD ? parseInt(result.balanceD, 10) : 0;
+        const initialBalanceN = result.balanceN ? parseInt(result.balanceN, 10) : 0;
+        const initialBalanceS = result.balanceS ? parseInt(result.balanceS, 10) : 0;
+        const initialBalanceCheck = result.balanceCheck ? parseInt(result.balanceCheck, 10) : 0;
+        setBalance(initialBalance);
+        setBalanceNot(initialBalanceN);
+        setBalanceDogs(initialBalanceD);
+        setBalanceS(initialBalanceS)
+        setBalanceCheck(initialBalanceCheck)
+        setIsLoading(false);
+      }
+    });
+  };
+  getInitialData();
+}, []);
   
   // Функция для триггера тактильной отдачи
   const triggerHapticFeedbackSuccess = () => {
@@ -24,6 +106,8 @@ const FriendsPage = () => {
       navigator.vibrate(50); 
     }
   };
+
+
 
   function encodeUserId(userId) {
     const userIdString = userId.toString();  // Преобразуем userId в строку
@@ -70,7 +154,7 @@ const FriendsPage = () => {
         
         setTotalBalance(totalBalanceSum);  // Устанавливаем общую сумму балансов
 
-        setIsLoading(false);
+        
 
       } catch (error) {
         console.error("Error fetching referral data:", error);
@@ -132,17 +216,9 @@ const FriendsPage = () => {
         </div>
       </div>
     ) : (
+
     <div className="friends-page">
-      <div className="referrals-section">
-        {renderReferralImages()}  {/* Выводим фотографии рефералов */}
-      </div>
-
-      <div className='ftoken'>
-        <img src='https://cdn-icons-png.flaticon.com/512/3626/3626764.png' alt="token image" className="token-image" />
-        {Math.floor(totalBalance * 0.025).toLocaleString()}  {/* Показываем сумму балансов всех рефералов */}
-      </div>
-
-
+      
 
       <h1 className="header-title">How it works</h1>
       <img 
@@ -150,6 +226,30 @@ const FriendsPage = () => {
         alt="picOfRef" 
         className="node-tree-image"
       />
+      {!balanceCheck && (<>
+        <button className="invite-button2" onClick={handleButtonClick} disabled={buttonState === 'loading'}>
+        {buttonState === 'loading' ? (<>
+          {loadingLetter}
+            <div className="spinner2"></div>
+             
+            </>
+        ) : (
+            'Count'
+        )}
+    </button>
+    </>)}
+    {success && (<>
+      <div className="description-container" style={{justifyContent: 'center', alignItems: 'center', width: '80%'}}>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      <img src='https://img.icons8.com/?size=100&id=63262&format=png&color=000000' alt="token image" className="token-image" style={{marginRight: '5px', width: '25px', height: '25px'}}/>
+      <p style={{fontSize: '25px'}}>Success</p>
+        </div>
+        <p className="description-text" style={{textAlign: 'center', width: '100%', fontSize: '10px'}}>The Secret tokens have been successfully decomposed into Durov Jesus Reward, which you can view in the "Reward" tab.</p>
+      </div>
+    </>)}
+
+
+
       <div className='description-container' style={{width: '100%'}}>
         <hr class="hr-text" />
       </div>

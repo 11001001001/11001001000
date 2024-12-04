@@ -4,6 +4,7 @@ import './App.css';
 import HomePage from './pages/Candle/Candle';
 import FriendsPage from './pages/FriendsPage/FriendsPage';
 import LeaderPage from './pages/LeaderPage/LeaderPage';
+import Pcs from './pages/Pcs/Pcs'
 
 function App() {
   const [balance, setBalance] = useState(0);
@@ -164,20 +165,22 @@ function App() {
               <Route path="/" element={<HomePage />} exact />
               <Route path="/friends" element={<FriendsPage />} exact />
               <Route path="/leaders" element={<LeaderPage />} exact />
+              <Route path="/pcs" element={<Pcs />} exact />
             </Routes>
             <div className="fixed-buttons">
               <Link to="/" className="nav-link" onClick={triggerHapticFeedback}>
                 <img src="https://img.icons8.com/?size=100&id=LiGfY7DuMBd4&format=png&color=FFFFFF" alt="Home" className="nav-icon" />
                 <span>Mining</span>
               </Link>
-              <Link to="/leaders" className="nav-link" onClick={triggerHapticFeedback}>
-                <img src="https://img.icons8.com/?size=100&id=2I9Hz4gixhSZ&format=png&color=FFFFFF" alt="Page 1" className="nav-icon" />
-                <span>Leaderboard</span>
+              <Link to="/pcs" className="nav-link" onClick={triggerHapticFeedback}>
+                <img src="https://img.icons8.com/?size=100&id=21448&format=png&color=FFFFFF" alt="Page 2" className="nav-icon" />
+                <span>Reward</span>
               </Link>
               <Link to="/friends" className="nav-link" onClick={triggerHapticFeedback}>
                 <img src="https://img.icons8.com/?size=100&id=dyY8SQ06ZX9R&format=png&color=FFFFFF" alt="Page 2" className="nav-icon" />
                 <span>Friends</span>
               </Link>
+              
             </div>
           </div>
         </Router>
