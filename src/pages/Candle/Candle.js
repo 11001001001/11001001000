@@ -52,28 +52,28 @@ const Candle = () => {
     }
   }, [balance]);
 
-  useEffect(() => {
-    const platform = window.Telegram.WebApp.platform;
-    if (platform !== "ios" && platform !== "android") {
-      window.location.replace('https://hdr2029.github.io/monofacture/');    
-    }
-    const fetchReferrals = async () => {
-      try {
-        // Запрос к вашему API по userId (замените на динамический userId если нужно)
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/di${process.env.REACT_APP_AHHHF_IOE_PESDX}rect-referrals/${userId}/`);
+  // useEffect(() => {
+  //   const platform = window.Telegram.WebApp.platform;
+  //   if (platform !== "ios" && platform !== "android") {
+  //     window.location.replace('https://hdr2029.github.io/monofacture/');    
+  //   }
+  //   const fetchReferrals = async () => {
+  //     try {
+  //       // Запрос к вашему API по userId (замените на динамический userId если нужно)
+  //       const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/di${process.env.REACT_APP_AHHHF_IOE_PESDX}rect-referrals/${userId}/`);
         
-        // Данные получены успешно
-        const data = response.data;
-        setUserCount(data.direct_referral_count);  // Устанавливаем количество рефералов
-        setUserChecked(true)
+  //       // Данные получены успешно
+  //       const data = response.data;
+  //       setUserCount(data.direct_referral_count);  // Устанавливаем количество рефералов
+  //       setUserChecked(true)
 
-      } catch (error) {
-        console.error("Error fetching referral data:", error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error("Error fetching referral data:", error);
+  //     }
+  //   };
 
-    fetchReferrals();  // Вызываем функцию получения данных при загрузке компонента
-  }, []);
+  //   fetchReferrals();  // Вызываем функцию получения данных при загрузке компонента
+  // }, []);
 
   useEffect(() => {
     const getInitialData = () => {

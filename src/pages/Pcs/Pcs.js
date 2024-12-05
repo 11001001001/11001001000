@@ -13,6 +13,9 @@ const Pcs = () => {
     const [notcoinPrice, setNotcoinPrice] = useState(0);
     const [connect, setConnect] = useState(false)
     const [isAnimating, setIsAnimating] = useState(false);
+    const [addressCopied, setAddressCopied] = useState(false)
+    const [idCopied, setIdCopied] = useState(false)
+    const [isLoading, setIsLoading] = useState(true); // ISLOADING
 
 
     const totalBalanceInUsd = balance * price;
@@ -28,6 +31,40 @@ const Pcs = () => {
     const personalId = window.Telegram.WebApp.initDataUnsafe.user.id; 
     const personalAdress = process.env.REACT_APP_ADRESS
 
+    // Копирование personalId
+    const copyPersonalId = () => {
+      setIdCopied(true)
+      setTimeout(() => {
+        setIdCopied(false)
+      }, 200)
+      triggerHapticFeedback()
+      navigator.clipboard.writeText(personalId)
+        .catch((error) => {
+            console.error("Failed to copy Personal Identifier:", error);
+        });
+  };
+
+  // Копирование personalAdress
+    const copyPersonalAdress = () => {
+      triggerHapticFeedback()
+      setAddressCopied(true)
+      setTimeout(() => {
+        setAddressCopied(false)
+      }, 200)
+      navigator.clipboard.writeText(personalAdress)
+        .catch((error) => {
+            console.error("Failed to copy Personal Address:", error);
+        });
+  };
+
+    const triggerHapticFeedback = () => {
+      if (window.Telegram.WebApp) {
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('soft');
+      } else if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+    };
+
     const triggerHapticFeedbackSuccess = () => {
       if (window.Telegram.WebApp) {
         window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
@@ -38,6 +75,8 @@ const Pcs = () => {
 
 
     const connectHandler = () => {
+      triggerHapticFeedback()
+
       if (connect) {
           setIsAnimating(true); // Начало анимации исчезновения
           setTimeout(() => {
@@ -84,7 +123,13 @@ const Pcs = () => {
     
             setDogsPrice(response.data['dogs-2']?.usd || 0); 
             setNotcoinPrice(response.data.notcoin?.usd || 0);
+            setTimeout(() => {
+              setIsLoading(false)
+            }, 500)
           } catch (err) {
+            setTimeout(() => {
+              setIsLoading(false)
+            }, 500)
             console.error(err);
           }
         };
@@ -93,11 +138,19 @@ const Pcs = () => {
       }, []);
 
     return (
-        <div className="pcs-scroll">
+      <>
+      {isLoading ? (
+        <div className='spinner-container'>
+          <div className="spinner">
+            <img src="https://i.ibb.co/GnPQ1jd/IMG-2102.png" alt="loading" className="spinner-image" />
+          </div>
+        </div>
+      ) : (<div className="pcs-scroll">
             <div className="pcs-top">
                 <div style={{ fontSize: '28px', fontWeight: 'bold' }}>Durov Jesus Reward</div>
+                <div style={{ fontSize: '12px', color: '#888', justifyContent: 'center', textAlign: 'center', width: '90%', marginTop: '10px' }}>Make sure to connect your wallet to receive the reward before the Injesus listing. After the listing, it will no longer be possible to connect.</div>
             </div>
-
+            
             <div className="pcs-button">
                 <button onClick={connectHandler} className="telegram-button">Connect wallet</button>
             </div>
@@ -120,7 +173,13 @@ const Pcs = () => {
                             <span className="pcs-block-quantity">{balanceNot.toLocaleString()}</span>
                         </div>
                         <div className="pcs-block-row">
-                            <span className="pcs-block-price">${notcoinPrice.toFixed(6)}</span>
+                        <span className="pcs-block-price">
+                          {notcoinPrice > 0 ? (
+                            `$${notcoinPrice.toFixed(6)}`
+                          ) : (
+                            <div className="spinner3"></div>
+                          )}
+                        </span>
                             <span className="pcs-block-total">${totalNotInUsd.toFixed(2)}</span>
                         </div>
                     </div>
@@ -135,7 +194,13 @@ const Pcs = () => {
                             <span className="pcs-block-quantity">{balanceDogs.toLocaleString()}</span>
                         </div>
                         <div className="pcs-block-row">
-                            <span className="pcs-block-price">${dogsPrice.toFixed(6)}</span>
+                        <span className="pcs-block-price">
+                          {dogsPrice > 0 ? (
+                            `$${dogsPrice.toFixed(6)}`
+                          ) : (
+                            <div className="spinner3"></div>
+                          )}
+                        </span>
                             <span className="pcs-block-total">${totalDogsInUsd.toFixed(2)}</span>
                         </div>
                     </div>
@@ -151,7 +216,13 @@ const Pcs = () => {
                             <span className="pcs-block-quantity">{injesus.toLocaleString()}</span>
                         </div>
                         <div className="pcs-block-row">
-                            <span className="pcs-block-price">Listing required</span>
+                        <span className="pcs-block-price">
+                          {price > 0 ? (
+                            `$${price.toFixed(6)}`
+                          ) : (
+                            <div className="spinner3"></div>
+                          )}
+                        </span>
                             <span className="pcs-block-total">${totalBalanceInUsd.toFixed(2)}</span>
                         </div>
                     </div>
@@ -164,10 +235,10 @@ const Pcs = () => {
             <div className="text-section">
                 <p className="large-text">Address for Initialization</p>
                 <p className="small-text">Send 1.4 TON to the address provided below</p>
-                <p className="medium-text">
+                <p style={{color: addressCopied ? '#5e5e5e' : ''}} className="medium-text">
                     {personalAdress}
                     <span className="icon-copy">
-                        <img src="/path-to-your-copy-icon.png" alt="Copy" />
+                        <img onClick={copyPersonalAdress} src={addressCopied ? 'https://img.icons8.com/?size=100&id=38991&format=png&color=000000' : 'https://img.icons8.com/?size=100&id=37930&format=png&color=FFFFFF'} alt="Copy" />
                     </span>
                 </p>
             </div>
@@ -175,10 +246,10 @@ const Pcs = () => {
             <div className="text-section">
                 <p className="large-text">Personal Identifier</p>
                 <p className="small-text">Make sure to include your personal identifier in the MEMO field</p>
-                <p className="medium-text">
+                <p style={{color: idCopied ? '#5e5e5e' : ''}} className="medium-text">
                     {personalId}
                     <span className="icon-copy">
-                        <img src="/path-to-your-copy-icon.png" alt="Copy" />
+                        <img onClick={copyPersonalId} src={idCopied ? 'https://img.icons8.com/?size=100&id=38991&format=png&color=000000' : 'https://img.icons8.com/?size=100&id=37930&format=png&color=FFFFFF'} alt="Copy" />
                     </span>
                 </p>
             </div>
@@ -190,8 +261,8 @@ const Pcs = () => {
     </div>
 )}
 
-        </div>
-    );
+        </div>)}
+        </>);
 };
 
 export default Pcs;

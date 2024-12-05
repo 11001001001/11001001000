@@ -132,16 +132,16 @@
 /* Блок с контентом */
 .overlay-block {
     width: 90%;
-    height: 90vh;
+    height: 60vh;
     margin: 5px;
     background-color: rgb(0, 0, 0);
     border-radius: 15px;
-    border: 1px white solid;
+    border: 1px rgb(255, 255, 255) solid;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 20px;
     animation: slideInFromBottom 0.6s forwards;
 }
@@ -171,12 +171,22 @@
 }
 
 .medium-text {
-    font-size: 18px;
+    font-size: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px; /* Расстояние между текстом и иконкой */
+    background-color: #ffffff0b;
+    border-radius: 12px;
+    padding: 5px;
+    max-width: 80%; /* Ограничение ширины текста */
+    word-wrap: break-word; /* Перенос длинных слов */
+    text-align: center; /* Центрирование текста */
+    white-space: normal; /* Разрешает перенос строк */
+    overflow-wrap: anywhere; /* Перенос текста в любом месте */
+    margin: 0 auto; /* Центрирование блока внутри контейнера */
 }
+
 
 /* Иконка копирования */
 .icon-copy img {
@@ -189,7 +199,7 @@
 .close-button {
     width: 50%;
     padding: 10px 0;
-    background-color: #007bff;
+    background-color: #2a2c2e;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
@@ -201,7 +211,7 @@
 }
 
 .close-button:hover {
-    background-color: #0056b3;
+    background-color: #7d7d7d;
 }
 
 /* Анимации */
@@ -244,3 +254,22 @@
         opacity: 0;
     }
 }
+
+.spinner3 {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #ccc;
+    border-top: 2px solid #000;
+    border-radius: 50%;
+    animation: spin3 0.8s linear infinite;
+    display: inline-block;
+  }
+  
+  @keyframes spin3 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

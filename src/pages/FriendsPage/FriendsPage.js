@@ -11,7 +11,7 @@ const FriendsPage = () => {
   const [totalReferrals, setTotalReferrals] = useState(0);  // Состояние для хранения общего числа рефералов
   const [totalBalance, setTotalBalance] = useState(0);  // Состояние для хранения суммы всех балансов рефералов
   const [photoUrls, setPhotoUrls] = useState([]);  
-  const [isLoading, setIsLoading] = useState(false); // ISLOADING
+  const [isLoading, setIsLoading] = useState(true); // ISLOADING
   const [balanceS, setBalanceS] = useState(false)
   const [balanceCheck, setBalanceCheck] = useState(1)
   const [balanceDogs, setBalanceDogs] = useState(0)
@@ -51,7 +51,7 @@ const FriendsPage = () => {
             console.error('Failed to update balance in cloud storage:', error);
           }
         });
-        window.Telegram.WebApp.CloudStorage.setItem('balanceCheck', Math.floor(dogjesus).toString(), (error) => {
+        window.Telegram.WebApp.CloudStorage.setItem('balanceCheck2', Math.floor(dogjesus).toString(), (error) => {
           if (error) {
             console.error('Failed to update balance in cloud storage:', error);
           }
@@ -77,7 +77,7 @@ useEffect(() => {
 
 useEffect(() => {
   const getInitialData = () => {
-    window.Telegram.WebApp.CloudStorage.getItems(['balanceC', 'balanceN', 'balanceD', 'balanceS', 'balanceCheck'], (error, result) => {
+    window.Telegram.WebApp.CloudStorage.getItems(['balanceC', 'balanceN', 'balanceD', 'balanceS', 'balanceCheck2'], (error, result) => {
       if (error) {
         console.error('Failed to get initial data from cloud storage:', error);
       } else {
@@ -85,7 +85,7 @@ useEffect(() => {
         const initialBalanceD = result.balanceD ? parseInt(result.balanceD, 10) : 0;
         const initialBalanceN = result.balanceN ? parseInt(result.balanceN, 10) : 0;
         const initialBalanceS = result.balanceS ? parseInt(result.balanceS, 10) : 0;
-        const initialBalanceCheck = result.balanceCheck ? parseInt(result.balanceCheck, 10) : 0;
+        const initialBalanceCheck = result.balanceCheck2 ? parseInt(result.balanceCheck2, 10) : 0;
         setBalance(initialBalance);
         setBalanceNot(initialBalanceN);
         setBalanceDogs(initialBalanceD);
@@ -132,37 +132,37 @@ useEffect(() => {
     window.open(telegramShareUrl, '_blank');
   };
 
-  useEffect(() => {
-    const fetchReferrals = async () => {
-      try {
-        // Запрос к вашему API по userId (замените на динамический userId если нужно)
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/total-refe${process.env.REACT_APP_AHHHF_IOE_PESDX}rrals/${userId}/3/`);
+  // useEffect(() => {
+  //   const fetchReferrals = async () => {
+  //     try {
+  //       // Запрос к вашему API по userId (замените на динамический userId если нужно)
+  //       const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/total-refe${process.env.REACT_APP_AHHHF_IOE_PESDX}rrals/${userId}/3/`);
         
-        // Данные получены успешно
-        const data = response.data;
-        setTotalReferrals(data.total_referral_count);  // Устанавливаем количество рефералов
+  //       // Данные получены успешно
+  //       const data = response.data;
+  //       setTotalReferrals(data.total_referral_count);  // Устанавливаем количество рефералов
 
-        const photoUrlsArray = data.referrals.map(referral => referral.photo_url || picture);  // Если нет ссылки, ставим placeholder
-        setPhotoUrls(photoUrlsArray);  
+  //       const photoUrlsArray = data.referrals.map(referral => referral.photo_url || picture);  // Если нет ссылки, ставим placeholder
+  //       setPhotoUrls(photoUrlsArray);  
         
-        // Рассчитываем общую сумму балансов всех рефералов
-        const totalBalanceSum = data.referrals.reduce((sum, referral) => {
-          // Проверяем, что баланс является числом и конвертируем его
-          const balance = parseInt(referral.balance, 10);
-          return !isNaN(balance) ? sum + balance : sum;
-        }, 0);
+  //       // Рассчитываем общую сумму балансов всех рефералов
+  //       const totalBalanceSum = data.referrals.reduce((sum, referral) => {
+  //         // Проверяем, что баланс является числом и конвертируем его
+  //         const balance = parseInt(referral.balance, 10);
+  //         return !isNaN(balance) ? sum + balance : sum;
+  //       }, 0);
         
-        setTotalBalance(totalBalanceSum);  // Устанавливаем общую сумму балансов
+  //       setTotalBalance(totalBalanceSum);  // Устанавливаем общую сумму балансов
 
         
 
-      } catch (error) {
-        console.error("Error fetching referral data:", error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error("Error fetching referral data:", error);
+  //     }
+  //   };
 
-    fetchReferrals();  // Вызываем функцию получения данных при загрузке компонента
-  }, []);  // Пустой массив зависимостей
+  //   fetchReferrals();  // Вызываем функцию получения данных при загрузке компонента
+  // }, []);  // Пустой массив зависимостей
 
 
   const renderReferralImages = () => {
