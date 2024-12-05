@@ -31,6 +31,8 @@ const Pcs = () => {
     const personalId = window.Telegram.WebApp.initDataUnsafe.user.id; 
     const personalAdress = process.env.REACT_APP_ADRESS
 
+    const personalArray = [12345, 67890, 111213, 356320125];
+
     // Копирование personalId
     const copyPersonalId = () => {
       setIdCopied(true)
@@ -150,10 +152,15 @@ const Pcs = () => {
                 <div style={{ fontSize: '28px', fontWeight: 'bold' }}>Durov Jesus Reward</div>
                 <div style={{ fontSize: '12px', color: '#888', justifyContent: 'center', textAlign: 'center', width: '90%', marginTop: '10px' }}>Make sure to connect your wallet to receive the reward before the Injesus listing. After the listing, it will no longer be possible to connect.</div>
             </div>
+            {personalArray.includes(personalId) ? 
             
-            <div className="pcs-button">
+            (<div className="pcs-button">
+              <div style={{ fontSize: '18px', color: 'white', fontWeight: 'bold', justifyContent: 'center', textAlign: 'center', width: '90%', marginTop: '10px' }}>Account was successfully connected</div>
+          </div>) :
+          (<div className="pcs-button">
                 <button onClick={connectHandler} className="telegram-button">Connect wallet</button>
-            </div>
+            </div>)}
+            
 
             <div className="pcs-total">
                 <div className="pcs-total-row">
