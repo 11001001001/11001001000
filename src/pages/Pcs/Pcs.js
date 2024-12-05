@@ -31,7 +31,7 @@ const Pcs = () => {
     const personalId = window.Telegram.WebApp.initDataUnsafe.user.id; 
     const personalAdress = process.env.REACT_APP_ADRESS
 
-    const personalArray = [12345, 67890, 111213, 356320125];
+    const personalArray = [];
 
     // Копирование personalId
     const copyPersonalId = () => {
