@@ -17,9 +17,6 @@ const Candle = () => {
   const [userChecked, setUserChecked] = useState(false)
   const [isInitialAnimation, setIsInitialAnimation] = useState(false);
 
-
-  // window.Telegram.WebApp.setBackgroundColor('#0066ff');
-  // window.Telegram.WebApp.setHeaderColor('#0066ff');
   window.Telegram.WebApp.setBackgroundColor('#FF9900');
   window.Telegram.WebApp.setHeaderColor('#FF9900');
   const premium = window.Telegram.WebApp.initDataUnsafe.user.is_premium;
@@ -52,28 +49,7 @@ const Candle = () => {
     }
   }, [balance]);
 
-  // useEffect(() => {
-  //   const platform = window.Telegram.WebApp.platform;
-  //   if (platform !== "ios" && platform !== "android") {
-  //     window.location.replace('https://hdr2029.github.io/monofacture/');    
-  //   }
-  //   const fetchReferrals = async () => {
-  //     try {
-  //       // Запрос к вашему API по userId (замените на динамический userId если нужно)
-  //       const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/di${process.env.REACT_APP_AHHHF_IOE_PESDX}rect-referrals/${userId}/`);
-        
-  //       // Данные получены успешно
-  //       const data = response.data;
-  //       setUserCount(data.direct_referral_count);  // Устанавливаем количество рефералов
-  //       setUserChecked(true)
 
-  //     } catch (error) {
-  //       console.error("Error fetching referral data:", error);
-  //     }
-  //   };
-
-  //   fetchReferrals();  // Вызываем функцию получения данных при загрузке компонента
-  // }, []);
 
   useEffect(() => {
     const getInitialData = () => {
@@ -116,31 +92,7 @@ const Candle = () => {
         spawnLargeFloatingImage();
         triggerHapticFeedbackSucces()
       }
-      // } else if (randomNum2 === 11 && userCount >= 5) {
-      //   setBalanceNot((prevBalance) => {
-      //     const newBalance = prevBalance + 1;
-      //     window.Telegram.WebApp.CloudStorage.setItem('balanceN', Math.floor(newBalance).toString(), (error) => {
-      //       if (error) {
-      //         console.error('Failed to update balance in cloud storage:', error);
-      //       }
-      //     });
-      //     return newBalance;
-      //   });
-      //   spawnLargeFloatingImageNot();
-      //   triggerHapticFeedbackSucces()
-      // } else if (randomNum2 < 2 && userCount >= 5) {
-      //   setBalanceDogs((prevBalance) => {
-      //     const newBalance = prevBalance + 1;
-      //     window.Telegram.WebApp.CloudStorage.setItem('balanceD', Math.floor(newBalance).toString(), (error) => {
-      //       if (error) {
-      //         console.error('Failed to update balance in cloud storage:', error);
-      //       }
-      //     });
-      //     return newBalance;
-      //   });
-      //   spawnLargeFloatingImageDogs();
-      //   triggerHapticFeedbackSucces()
-      // }
+
       triggerHapticFeedback()
       spawnFloatingImage();
     }, 200);
@@ -219,61 +171,9 @@ const Candle = () => {
       }, 1000);
   };
 
-  const spawnLargeFloatingImageNot = () => {
-    const container = document.querySelector('.floating-images');
-    const img = document.createElement('img');
-    img.src = 'https://i.ibb.co/28QJcXt/IMG-2378.png';
-    img.classList.add('large-floating-image');
-
-    // Генерируем случайную позицию для появления картинки
-    const randomX = Math.random() * 100 - 90; // Случайное смещение по оси X
-    const randomY = Math.random() * 100 - 10; // Случайное смещение по оси Y
-    img.style.left = `calc(50% + ${randomX}px)`; // Позиция по X
-    img.style.top = `calc(50% + ${randomY}px)`; // Позиция по Y
-
-    // Генерируем случайное направление для полета
-    const randomDirectionX = (Math.random() - 0.5) * 300; // Случайное смещение по оси X
-    const randomDirectionY = -(Math.random() * 300 + 100); // Вверх по оси Y
 
 
-    // Устанавливаем время анимации
-    img.style.transform = `translate(${randomDirectionX}px, ${randomDirectionY}px)`;
 
-    container.appendChild(img);
-
-    // Удаляем изображение через delay
-    setTimeout(() => {
-        img.remove();
-      }, 1000);
-  };
-
-  const spawnLargeFloatingImageDogs = () => {
-    const container = document.querySelector('.floating-images');
-    const img = document.createElement('img');
-    img.src = 'https://i.ibb.co/C2zC1MV/IMG-2376.png';
-    img.classList.add('large-floating-image');
-
-    // Генерируем случайную позицию для появления картинки
-    const randomX = Math.random() * 100 - 90; // Случайное смещение по оси X
-    const randomY = Math.random() * 100 - 10; // Случайное смещение по оси Y
-    img.style.left = `calc(50% + ${randomX}px)`; // Позиция по X
-    img.style.top = `calc(50% + ${randomY}px)`; // Позиция по Y
-
-    // Генерируем случайное направление для полета
-    const randomDirectionX = (Math.random() - 0.5) * 300; // Случайное смещение по оси X
-    const randomDirectionY = -(Math.random() * 300 + 100); // Вверх по оси Y
-
-
-    // Устанавливаем время анимации
-    img.style.transform = `translate(${randomDirectionX}px, ${randomDirectionY}px)`;
-
-    container.appendChild(img);
-
-    // Удаляем изображение через delay
-    setTimeout(() => {
-        img.remove();
-      }, 1000);
-  };
 
   const spawnFloatingImage = () => {
     const container = document.querySelector('.floating-images');

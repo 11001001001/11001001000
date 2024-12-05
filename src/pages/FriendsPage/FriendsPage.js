@@ -6,11 +6,7 @@ const FriendsPage = () => {
   window.Telegram.WebApp.setBackgroundColor('#000');
   window.Telegram.WebApp.setHeaderColor('#000');
   const userId = window.Telegram.WebApp.initDataUnsafe.user.id; 
-  const picture = 'https://freesvg.org/img/abstract-user-flat-4.png';  // Placeholder image
 
-  const [totalReferrals, setTotalReferrals] = useState(0);  // Состояние для хранения общего числа рефералов
-  const [totalBalance, setTotalBalance] = useState(0);  // Состояние для хранения суммы всех балансов рефералов
-  const [photoUrls, setPhotoUrls] = useState([]);  
   const [isLoading, setIsLoading] = useState(true); // ISLOADING
   const [balanceS, setBalanceS] = useState(false)
   const [balanceCheck, setBalanceCheck] = useState(1)
@@ -132,79 +128,7 @@ useEffect(() => {
     window.open(telegramShareUrl, '_blank');
   };
 
-  // useEffect(() => {
-  //   const fetchReferrals = async () => {
-  //     try {
-  //       // Запрос к вашему API по userId (замените на динамический userId если нужно)
-  //       const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/total-refe${process.env.REACT_APP_AHHHF_IOE_PESDX}rrals/${userId}/3/`);
-        
-  //       // Данные получены успешно
-  //       const data = response.data;
-  //       setTotalReferrals(data.total_referral_count);  // Устанавливаем количество рефералов
 
-  //       const photoUrlsArray = data.referrals.map(referral => referral.photo_url || picture);  // Если нет ссылки, ставим placeholder
-  //       setPhotoUrls(photoUrlsArray);  
-        
-  //       // Рассчитываем общую сумму балансов всех рефералов
-  //       const totalBalanceSum = data.referrals.reduce((sum, referral) => {
-  //         // Проверяем, что баланс является числом и конвертируем его
-  //         const balance = parseInt(referral.balance, 10);
-  //         return !isNaN(balance) ? sum + balance : sum;
-  //       }, 0);
-        
-  //       setTotalBalance(totalBalanceSum);  // Устанавливаем общую сумму балансов
-
-        
-
-  //     } catch (error) {
-  //       console.error("Error fetching referral data:", error);
-  //     }
-  //   };
-
-  //   fetchReferrals();  // Вызываем функцию получения данных при загрузке компонента
-  // }, []);  // Пустой массив зависимостей
-
-
-  const renderReferralImages = () => {
-    if (totalReferrals === 0) return null;  // Если нет рефералов, ничего не выводим
-  
-    const maxImages = 6;  // Максимум картинок для отображения
-    const imagesToShow = Math.min(totalReferrals, maxImages);
-    const remainingReferrals = totalReferrals - maxImages;
-    const baseSize = 45;  // Начальный размер первой картинки (в пикселях)
-    const scaleFactor = 0.93;  // Каждая картинка будет уменьшаться на 7% (1 - 0.07)
-  
-    return (
-      <div className="referral-images-container">
-        {photoUrls.slice(0, imagesToShow).map((url, index) => {
-          const offset = (index - Math.floor(imagesToShow / 2)) * 20; // Смещение от центра
-          const size = baseSize * Math.pow(scaleFactor, index);  // Уменьшение на 7% для каждой следующей картинки
-  
-          return (
-            <img
-              key={index}
-              src={url}
-              alt={`Referral ${index + 1}`}
-              onError={(e) => e.target.src = picture}  // Если картинка не загрузилась, подставляем placeholder
-              className="referral-image"
-              style={{
-                zIndex: imagesToShow - index,  // Чтобы картинки накладывались правильно
-                transform: `translateX(${offset}px)`,  // Смещение от центра
-                width: `${size}px`,  // Динамическое изменение ширины
-                height: `${size}px`,  // Динамическое изменение высоты
-              }}
-            />
-          );
-        })}
-        {remainingReferrals > 0 && (
-          <div className="remaining-referrals-text">
-            +{remainingReferrals.toLocaleString()}
-          </div>
-        )}
-      </div>
-    );
-  };
-  
   
 
   return (
