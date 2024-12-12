@@ -378,7 +378,7 @@ const Candle = () => {
     className={`hands ${isHolding ? 'active' : ''}`}>
     <img
         className={`hands-image ${isHolding ? 'active' : ''}`}
-        src='https://jesus3.s3.eu-north-1.amazonaws.com/146614614666141.png'
+        src='https://clipart-library.com/images/5TRKbbnyc.png'
         alt='Hands Image'
         
         
